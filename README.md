@@ -2,7 +2,7 @@
 
 ## Features
 
-- [Reverse Geocoding](./features/reverse-geocoding.mdx)
+- [Reverse Geocoding](./features/reverse-geocoding.md)
 
 Other
 - Network Retry Policy
