@@ -1,35 +1,27 @@
 # GTEL Maps Documentation
 
 
-- https://www.openmap.vn
-- https://map.map4d.vn
-- https://www.google.com/maps
-- https://www.bing.com/maps
-- https://tools.vietmap.vn/live
-- https://maps.goong.io
-- https://maps.apple.com
-- https://maps.viettel.vn/maps
-- https://bando.tphcm.gov.vn
-- https://gomaps.vnpt.vn/maps
-- https://demo.ekgis.vn
-- https://2gis.ru / https://2gis.ae
-- https://maps.track-asia.com
-- https://map.busmap.vn/hcm
-- https://yandex.com/maps
-- https://map.baidu.com
-- https://map.naver.com
-- https://map.kakao.com
-- https://www.waze.com/live-map
-- https://www.mapbox.com/gallery
-- https://www.petalmaps.com
-- https://maps.here.com
-- https://www.openstreetmap.org
-- https://www.strava.com/maps
-- https://www.mappls.com
-- https://thongtinquyhoach.hochiminhcity.gov.vn
-- https://www.amap.com
-- https://mapy.com
-- https://guland.vn/soi-quy-hoach
-- https://quyhoach.thongtin.land
-- https://vn.maps.me
-- https://geoportal-stnmt.tphcm.gov.vn
+## Features
+
+- Forward Geocoding
+    - Submit form tìm kiếm / Nhấn nút tìm kiếm
+    - Deep link URL
+- Reverse Geocoding
+    - Click / tap trên bản đồ 
+    - Long press trên bản đồ 
+    - Right-click → Context Menu → Đây là đâu ? 
+    - Nhập tọa độ vào Search Bar 
+    - Deep link URL /place/[lat,lon]/@y,x,z 
+    - Dùng GPS hiện tại → Focus Search Bar + thông tin vị trí hiện tại
+- Autocomplete Geocoding
+    - Gõ > 1 ký tự hợp lệ
+- Place Detail
+    - Click / tap vào POI marker trên bản đồ
+    - Click vào kết quả trong Search Result List
+    - Deep link /place/[place_id] hoặc /place/[name]/@lat,lon,z
+    - Hover vào marker (tooltip preview)
+- Recent History
+    - 
+- Directions
+    - Context Menu → Chỉ đường đến đây
+    - 
