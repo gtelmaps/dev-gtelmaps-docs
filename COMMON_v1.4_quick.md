@@ -1,6 +1,25 @@
-# COMMON v1.3 — Bản rút gọn
+# COMMON v1.4 — Bản rút gọn
 
-> Đây là bản tóm tắt để dev/QA nắm nhanh. Chi tiết đầy đủ → [COMMON_v1.3_supplemented.md](./COMMON_v1.3_supplemented.md)
+> Đây là bản tóm tắt để dev/QA nắm nhanh. Chi tiết đầy đủ → [COMMON_v1.4_supplemented.md](./COMMON_v1.4_supplemented.md)
+
+---
+
+## Override Pattern (mới v1.4)
+
+| COMMON Section | Inherit | Override | Extend | Ghi chú |
+|---|:---:|:---:|:---:|---|
+| §2 Auth | ✅ | — | — | Chỉ khai báo scope |
+| §3 Rate Limiting | ✅ | — | — | Kế thừa nguyên |
+| §4 Business Rules | ✅ | — | ✅ | Feature thêm BR riêng |
+| §5 NFR | ✅ | ✅ | — | Override nếu SLA chặt hơn |
+| §6 Response & Errors | ✅ | — | ✅ | Feature thêm error code riêng |
+| §7 Caching | ✅ | ✅ | — | Override cache key, TTL |
+| §8 Logging | ✅ | — | ✅ | Feature thêm log fields riêng |
+| §9 Monitoring | ✅ | ✅ | ✅ | Override alert + thêm panels |
+| §10 Security | ✅ | — | — | Kế thừa nguyên |
+| §11 DoD | ✅ | — | ✅ | Feature thêm DoD items riêng |
+
+> **Feature Spec Template:** Từ v2.0 trở đi, feature spec khuyến khích dùng cấu trúc **5 Parts** (Bối cảnh → Đặc tả → Vận hành → Phát hành → Tham khảo). AC inline cạnh spec.
 
 ---
 
@@ -70,7 +89,7 @@ Authorization: Bearer {api_key}
 |---|---|
 | P95 (cache MISS) | ≤ 500ms (feature có thể override) |
 | P95 (cache HIT) | ≤ 20ms |
-| Timeout | **5 giây** (cả gateway + client-side) |
+| Timeout | **5 giây** (gateway + client-side) |
 | Throughput | ≥ 100 RPS/feature |
 | Uptime | ≥ 99.5% monthly |
 | RTO | ≤ 15 phút |
@@ -102,6 +121,7 @@ Authorization: Bearer {api_key}
 - Input validation trước khi truyền backend
 - Response không lộ stack trace / IP / service name
 - CORS: chỉ origin đã đăng ký, cấm `*`
+- Request body / URL tổng cộng ≤ **8 KB** → vượt: `413`
 - OWASP ZAP bắt buộc trước production
 
 ---

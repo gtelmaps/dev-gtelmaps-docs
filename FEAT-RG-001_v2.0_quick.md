@@ -1,8 +1,8 @@
 # [FEAT-RG-001] Reverse Geocoding — Bản rút gọn
 
-> COMMON inherited: **v1.3** → [COMMON_v1.3_quick.md](./COMMON_v1.3_quick.md)
-> Chi tiết đầy đủ → [FEAT-RG-001_v1.6_supplemented.md](./FEAT-RG-001_v1.6_supplemented.md)
-> Override: §VIII, §IX, §X, §XI, §XII, §XIV, §XV, §XVII, §XVIII, §XIX
+> COMMON inherited: **v1.4** → [COMMON_v1.4_quick.md](./COMMON_v1.4_quick.md)
+> Chi tiết đầy đủ → [FEAT-RG-001_v2.0_supplemented.md](./FEAT-RG-001_v2.0_supplemented.md)
+> Override: §5 (NFR), §6 (Error extend), §7 (Cache), §8 (Log extend), §9 (Alert)
 
 ---
 
@@ -20,7 +20,25 @@
 
 ---
 
-## API Contract
+# Part 1 — Bối cảnh
+
+## User Stories (tóm tắt)
+
+| ID | Role | Goal |
+|---|---|---|
+| US-01 | Developer | Gửi tọa độ → nhận địa chỉ có cấu trúc |
+| US-02 | Developer | Lọc theo cấp hành chính |
+| US-03 | Developer | Nhận địa chỉ bằng `vi` hoặc `en` |
+| US-04 | End User | Click bản đồ → thấy địa chỉ |
+| US-05 | End User (Mobile) | Long press → xem địa chỉ |
+| US-06 | End User | Mở link có tọa độ → địa chỉ tự động |
+| US-07 | Platform Admin | Xem usage per API key |
+
+---
+
+# Part 2 — Đặc tả
+
+## API Contract (§VII)
 
 ```http
 GET /v1/geocode/reverse
@@ -85,23 +103,23 @@ Authorization: Bearer {api_key}
 | 400 | `INVALID_RESULT_TYPE` | ⭐ Feature-specific |
 | 504 | `GATEWAY_TIMEOUT` | Nominatim down |
 
-> Còn lại: xem COMMON (401, 403, 429, 500)
+> Còn lại: xem COMMON (401, 403, 413, 429, 500)
+
+### Mock Responses (§7.4)
+
+Frontend dùng mock để build song song với Backend:
+
+- **Mock 1 — Happy Path:** `status: "OK"`, 1 result đầy đủ address_components
+- **Mock 2 — ZERO_RESULTS:** `status: "ZERO_RESULTS"`, `results: []`
+- **Mock 3 — Error:** `status: "INVALID_REQUEST"`, không có field `results`
+
+> Chi tiết JSON → xem §7.4 bản đầy đủ.
 
 ---
 
-## NFR Override
+## UI/UX & Frontend (§VIII)
 
-| Chỉ số | COMMON | **RG Override** |
-|---|---|---|
-| P95 (cache MISS) | ≤ 500ms | **≤ 300ms** |
-| Throughput | ≥ 100 RPS | **≥ 500 RPS** |
-| Marker sau trigger | — | **≤ 100ms** |
-| Popup render sau response | — | **≤ 500ms** |
-| Loading indicator | — | Hiển thị sau **> 150ms** |
-
----
-
-## 8 Triggers
+### 8 Triggers
 
 | ID | Trigger | Platform | AC riêng |
 |---|---|---|---|
@@ -115,6 +133,35 @@ Authorization: Bearer {api_key}
 | T08 | API call trực tiếp | API | A01–A10 |
 
 > T01–T07 đều gọi cùng API → AC nhóm A + B02–B07 áp dụng tất cả.
+
+### UI States
+
+| State | Component | Ghi chú |
+|---|---|---|
+| idle | Không có gì | |
+| loading | Popup/Sheet + spinner | Sau 150ms |
+| success | Popup/Sheet + actions | |
+| zero_results | Empty message | Giữ marker |
+| error | Toast 4s | |
+| gps_denied | Toast | |
+| gps_low_accuracy | Marker + badge | > 100m |
+| dragging | Popup đóng | |
+| disabled | Nút disabled + tooltip | GPS unavailable |
+
+**Responsive:** < 768px portrait → Bottom Sheet. Còn lại → Popup. Font: Be Vietnam Pro.
+
+### Design Asset Status (§8.3)
+
+| Component / State | Status |
+|---|---|
+| Popup — success / loading / zero_results | ⬜ Chờ link |
+| Bottom Sheet — all states | ⬜ Chờ link |
+| Context Menu — "Đây là đâu?" | ⬜ Chờ link |
+| GPS accuracy badge | ⬜ Chờ link |
+| Toast — error / gps_denied | ⬜ Chờ link |
+| Inline error — Search Bar | ⬜ Chờ link |
+
+> DES cần fill Figma link + đổi status → ✅ Ready trước khi Frontend build.
 
 ---
 
@@ -151,26 +198,25 @@ Authorization: Bearer {api_key}
 | B10 | Drag marker → đóng popup → thả → API mới → popup mới |
 | B11 | "10.7769, 106.7009" + Enter → di chuyển + API. Sai format → inline error |
 | B12 | `/map?lat=X&lng=Y[&zoom=Z]` → auto load. Sai param → toast lỗi |
-| B13 | GPS denied → toast. OK → marker + API. Accuracy > 100m → badge. Không có GPS → disabled |
+| B13 | GPS denied → toast. OK → marker + API. Accuracy > 100m → badge. Không có GPS → nút disabled + tooltip |
 
 ---
 
-## Business Rules tóm tắt
+## NFR Override (§IX)
 
-| BR | Rule |
-|---|---|
-| RG-01 | Ưu tiên: ROOFTOP > RANGE_INTERPOLATED > GEOMETRIC_CENTER > APPROXIMATE |
-| RG-02 | V1: 0 hoặc 1 result |
-| RG-03 | Ngoài VN → ZERO_RESULTS |
-| RG-04 | Cache key: 3dp (~111m) |
-| RG-05 | Search Bar: chỉ decimal degrees |
-| RG-06 | Deep link: zoom mặc định 15. Param sai → default view + toast |
-| RG-07 | Không có fallback. Nominatim down → 504 |
-| RG-08 | GPS accuracy > 100m → badge. Không có GPS → nút disabled |
+| Chỉ số | COMMON | **RG Override** |
+|---|---|---|
+| P95 (cache MISS) | ≤ 500ms | **≤ 300ms** |
+| Throughput | ≥ 100 RPS | **≥ 500 RPS** |
+| Marker sau trigger | — | **≤ 100ms** |
+| Popup render sau response | — | **≤ 500ms** |
+| Loading indicator | — | Hiển thị sau **> 150ms** |
 
 ---
 
-## Technical Stack
+# Part 3 — Vận hành
+
+## Technical Stack (§XI)
 
 | Component | Tech | Namespace |
 |---|---|---|
@@ -189,27 +235,29 @@ GET /v1/geocode/reverse?lat=X&lng=Y&language=vi
 
 **K8s:** HPA min=2, max=10, CPU 70%. Baseline: 500m CPU, 2Gi RAM.
 
+### Data Readiness Checklist (§XI)
+
+| Data Source | Owner | Trạng thái | Deadline |
+|---|---|---|---|
+| OSM Vietnam import vào Nominatim | DevOps | ⬜ Pending | Trước staging |
+| GTEL Admin DB sync + mapping layer | GIS + Backend | ⬜ Pending | Trước staging |
+| Postcode DB loaded | GIS | ⬜ Pending | Trước staging |
+| Data quality test 100 tọa độ mẫu | QA + GIS | ⬜ Pending | Trước UAT |
+
 ---
 
-## UI States
+## Alert Override (§XII)
 
-| State | Component | Ghi chú |
+| Alert | Condition | Severity |
 |---|---|---|
-| idle | Không có gì | |
-| loading | Popup/Sheet + spinner | Sau 150ms |
-| success | Popup/Sheet + actions | |
-| zero_results | Empty message | Giữ marker |
-| error | Toast 4s | |
-| gps_denied | Toast | |
-| gps_low_accuracy | Marker + badge | > 100m |
-| dragging | Popup đóng | |
-| disabled | Nút disabled + tooltip | GPS unavailable |
-
-**Responsive:** < 768px portrait → Bottom Sheet. Còn lại → Popup. Font: Be Vietnam Pro.
+| Latency Warning | P95 > 350ms / 5min | 🟡 |
+| Latency Critical | P95 > 500ms / 5min | 🔴 |
+| ZERO_RESULTS | > 20% / 1h | 🟡 |
+| Nominatim Down | Health fail > 30s | 🔴 |
 
 ---
 
-## Analytics Events
+## Analytics Events (§XIII)
 
 | Event | Khi nào |
 |---|---|
@@ -227,18 +275,47 @@ GET /v1/geocode/reverse?lat=X&lng=Y&language=vi
 
 ---
 
-## Alert Override
+# Part 4 — Chất lượng & Phát hành
 
-| Alert | Condition | Severity |
-|---|---|---|
-| Latency Warning | P95 > 350ms / 5min | 🟡 |
-| Latency Critical | P95 > 500ms / 5min | 🔴 |
-| ZERO_RESULTS | > 20% / 1h | 🟡 |
-| Nominatim Down | Health fail > 30s | 🔴 |
+## Team Dependency & Handoff (§XIV)
+
+| Phase | Output | Owner | Blocked by |
+|---|---|---|---|
+| P0 | API Contract finalized | BA + Backend Lead | — |
+| P1 | Mock API ready | Backend Dev | P0 |
+| P2 | Design assets ready | DES | P0 |
+| P3 | Infra staging ready | DevOps | Data readiness |
+| P4 | Backend API on staging | Backend Dev | P3 |
+| P5 | Frontend UI on staging (mock) | Frontend Dev | P1, P2 |
+| P6 | Integration FE ↔ real API | Frontend + Backend | P4, P5 |
+| P7 | UAT | QA / QC | P6 |
+| P8 | Perf test (500 RPS, P95 ≤ 300ms) | DevOps | P4 |
+
+```text
+Sprint 0:    [BA: Contract] [Backend: Mock API] [DES: Figma]
+Sprint 1:    [Backend: Real API ────] [Frontend: UI + Mock ────] [DevOps: Infra]
+Sprint 2:    [Integration ──] [Perf test] [UAT ────]
+Sprint 2–3:  [Bug fix] [Sign-off] [Rollout prep]
+```
 
 ---
 
-## Rollout
+## Business Rules tóm tắt
+
+| BR | Rule |
+|---|---|
+| RG-01 | Ưu tiên: ROOFTOP > RANGE_INTERPOLATED > GEOMETRIC_CENTER > APPROXIMATE |
+| RG-02 | V1: 0 hoặc 1 result |
+| RG-03 | Ngoài VN → ZERO_RESULTS |
+| RG-04 | Cache key: 3dp (~111m) |
+| RG-05 | Search Bar: chỉ decimal degrees |
+| RG-06 | Deep link: zoom mặc định 15. Param sai → default view + toast |
+| RG-07 | Không có fallback. Nominatim down → 504 |
+| RG-08 | GPS accuracy > 100m → badge. Không có GPS → nút disabled + tooltip |
+
+---
+
+## Rollout (§XVII)
 
 **P0** Staging 100% → **P1** Internal 10% (24h no critical) → **P2** Internal 50% (stable) → **P3** Prod 100%
 
@@ -246,7 +323,7 @@ GET /v1/geocode/reverse?lat=X&lng=Y&language=vi
 
 ---
 
-## Test Data
+## Test Data (§XV)
 
 | ID | lat | lng | Expected |
 |---|---|---|---|
@@ -262,6 +339,8 @@ GET /v1/geocode/reverse?lat=X&lng=Y&language=vi
 | TD-10 | 10.7769 | 106.7009 | X-Cache: HIT (lần 2) |
 
 ---
+
+# Part 5 — Tham khảo
 
 ## Open Items (không chặn build)
 

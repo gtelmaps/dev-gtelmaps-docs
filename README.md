@@ -25,3 +25,12 @@
 - Directions
     - Context Menu → Chỉ đường đến đây
     - 
+- Định vị vị trí
+    - Startup web -> Xác thực quyền vị trí
+
+
+UX UI
+- Tương tác với bản đồ
+    - Mặc định: trỏ, Move: bàn tay 
+    
+    
