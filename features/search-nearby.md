@@ -32,6 +32,30 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 
 ---
 
+## Unique Selling Propositions (USP)
+
+> Các lợi thế cạnh tranh cốt lõi của tính năng Search Nearby trên GTel Maps tập trung vào đột phá trải nghiệm người dùng và nhu cầu thị trường nội địa.
+
+1. **Hover-to-route preview (Đột phá UX toàn cầu):**
+   - **Tính năng:** Tự động hiển thị trước tuyến đường từ vị trí hiện tại đến POI tương ứng khi hover vào kết quả tìm kiếm (hỗ trợ đa phương tiện).
+   - **Giá trị:** Trải nghiệm hoàn toàn mới chưa có trên bất kỳ nền tảng bản đồ nào, cho phép người dùng so sánh nhanh khoảng cách thực tế mà không cần tải trang hay chuyển màn hình.
+
+2. **Isochrone & Isodistance Visualization (Độc quyền tại Việt Nam):**
+   - **Tính năng:** Tích hợp bộ lọc vùng phủ theo thời gian đi lại (Isochrone) hoặc khoảng cách thực tế (Isodistance) hỗ trợ đa phương tiện.
+   - **Giá trị:** Không đối thủ nội địa nào có; vượt trội hơn Google Maps nhờ thiết kế popup chọn chế độ rõ ràng, tường minh.
+
+3. **Toàn quyền kiểm soát và Chia sẻ phiên tìm kiếm (Full Search State):**
+   - **Tính năng:** URL Deep link lưu lại đầy đủ trạng thái tìm kiếm (query, tọa độ, bộ lọc). Người dùng được trao quyền tự quyết định có tự động cập nhật kết quả hay không thông qua checkbox "Auto-update khi di chuyển bản đồ".
+   - **Giá trị:** Chia sẻ chính xác ngữ cảnh đang tìm kiếm (vượt xa các đối thủ nội địa vốn chỉ chia sẻ được 1 địa điểm tĩnh).
+
+> Đối thủ: Tham khảo & Đánh giá
+
+- [Google Maps](https://www.google.com/maps)
+- [Bản đồ TP.HCM](https://bando.tphcm.gov.vn)
+- Không đơn vị nào khác tại Việt Nam có tính năng tương tự, chỉ dừng ở mức Category chip.
+
+---
+
 # Part 02 - Specifications
 
 ## Backend
@@ -50,6 +74,8 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 | T07 | Cuộn danh sách kết quả xuống gần cuối (Infinity scroll)             | Web, Mobile | `page` / `offset` tiếp theo                       | B12 |
 | T08 | Click nút "Back to top"                                             | Web, Mobile | —                                                 | B12 |
 | T09 | Hover từng kết quả result trong danh sách                           | Web         | Kết quả tương ứng                                 | B08 |
+| T10 | Tương tác với Filter chips (bộ lọc)                                 | Web, Mobile | Các tiêu chí lọc                                  | B13 |
+| T11 | Click nút Chia sẻ (Share)                                           | Web, Mobile | —                                                 | B14 |
 
 ### States Inventory
 
@@ -70,12 +96,15 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 | ---------------------------------------- | ----------------------- |
 | Nearby Result Panel (side panel)         | Web / tablet            |
 | Nearby Result Bottom Sheet               | Mobile                  |
-| POI Marker cluster trên bản đồ           | T01–T06 (success state) |
+| POI Marker category trên bản đồ          | T01–T06 (success state) |
+| Marker vị trí hiện tại                   | Success state           |
 | Result List Item (thumbnail + details)   | Success state           |
 | Skeleton List (3–5 items)                | Loading state           |
 | Distance badge trên mỗi result item      | Success state           |
 | Sort / Filter chips (Gần nhất, Rating)   | Success state           |
+| Nút Chia sẻ (Share)                      | Success state           |
 | Checkbox "Update results when map moves" | Success state           |
+| Popup Isochrone / Isodistance            | T01 (khi click Nearby)  |
 | Nút "Search this area"                   | T06 (search-on-move)    |
 | Empty State illustration                 | zero_results state      |
 | Toast notification                       | Error state             |
@@ -104,8 +133,9 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 ```gherkin
 Given  Place Detail Panel đang mở
 When   người dùng click nút [Nearby]
-Then   chuyển sang Nearby Result Panel với category mặc định "Tất cả"
-And    bán kính tìm kiếm mặc định 500m xung quanh địa điểm đó
+Then   hiển thị popup hỗ trợ Isochrone (thời gian) và Isodistance (khoảng cách) trên bản đồ
+And    popup cho phép chọn khoảng thời gian/khoảng cách và phương tiện di chuyển (đi bộ, đi xe)
+And    chuyển sang Nearby Result Panel với category mặc định "Tất cả"
 And    URL cập nhật thành /search/nearby?place_id=[id] hoặc /@lat,lng,zoom
 And    Place Detail Panel đóng, nhường chỗ cho Result Panel
 ```
@@ -196,10 +226,11 @@ Then   danh sách items hiển thị, mỗi item gồm:
        - Category label
        - Khoảng cách từ điểm tham chiếu (ví dụ: "350m", "1.2km")
        - Rating ngắn gọn (nếu có)
-And    POI markers tương ứng xuất hiện trên bản đồ
-And    khi hover từng kết quả result trong danh sách → marker hiện tại trên bản đồ sẽ thay thế bằng marker highlight (web)
-And    khi bỏ hover → marker highlight trở về marker hiện tại bình thường
-And    Sort chips: [Gần nhất] [Đánh giá cao] hiển thị đầu danh sách
+And    danh sách các marker phân biệt theo category mới xuất hiện trên bản đồ, cùng với marker vị trí hiện tại
+And    khi hover từng kết quả result trong danh sách → thay thế marker đang chỉ định bằng marker mới và dẫn routing từ marker vị trí hiện tại tới marker đang chỉ định theo 2 phương tiện đi bộ hoặc đi xe (web)
+And    khi bỏ hover → ẩn routing và marker trở về bình thường
+And    Sort / Filter chips (Gần nhất, Đánh giá cao, Khu vực, Khoảng cách) hiển thị đầu danh sách
+And    Nút Chia sẻ (Share) hiển thị cho phép chia sẻ kết quả
 ```
 
 #### AC-B09 · ZERO_RESULTS state
@@ -249,6 +280,24 @@ And    kết quả mới được nạp và thêm vào cuối danh sách
 Given  người dùng click nút "Back to top"
 Then   danh sách tự động cuộn lên trên cùng (smooth scroll)
 And    nút "Back to top" biến mất
+```
+
+#### AC-B13 · Lọc kết quả với Filter chips
+
+```gherkin
+Given  Nearby Result Panel đang hiển thị
+When   người dùng tương tác với Filter chips (ví dụ: giá, khu vực, khoảng cách, v.v.)
+Then   kết quả tìm kiếm trong danh sách được cập nhật lại theo điều kiện lọc
+And    danh sách các marker trên bản đồ tương ứng cập nhật theo kết quả mới
+```
+
+#### AC-B14 · Tính năng chia sẻ
+
+```gherkin
+Given  Nearby Result Panel đang hiển thị kết quả
+When   người dùng click nút Chia sẻ (Share)
+Then   hệ thống lấy link theo thông tin tìm kiếm gần nhất bao gồm vị trí và bộ lọc
+And    hiển thị công cụ chia sẻ hoặc sao chép vào clipboard để gửi cho người khác
 ```
 
 ### Flow — UI
