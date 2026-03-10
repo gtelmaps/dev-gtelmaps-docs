@@ -40,52 +40,58 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 
 ### Triggers & Entry Points
 
-| ID  | Trigger                                                                     | Nền tảng    | Input                                             | AC  |
-| --- | --------------------------------------------------------------------------- | ----------- | ------------------------------------------------- | --- |
-| T01 | Click nút [Nearby] trong Action Bar của Place Detail Panel                  | Web, Mobile | `place_id` hoặc `(lat, lng)` của địa điểm đang mở | B01 |
-| T02 | Click vào Category chip trong Quick Filter bar (áp dụng nearby)            | Web, Mobile | `category` + `(lat, lng)` từ map center           | B02 |
-| T03 | Nhập query vào Search Bar → chọn kết quả dạng "Tìm [query] gần đây"        | Web, Mobile | `query` + `(lat, lng)` từ vị trí hiện tại         | B03 |
-| T04 | Click nút [Khám phá khu vực này] khi bản đồ ở trạng thái idle              | Web, Mobile | `(lat, lng)` từ map center                        | B04 |
-| T05 | Deep link URL `/search/[query]?near=lat,lng` hoặc `/@lat,lng,zoom`         | Web         | `query` + `(lat, lng)` từ URL params              | B05 |
-| T06 | Sau khi bản đồ pan / zoom → "Tìm kiếm trong khu vực này" (search-on-move) | Web, Mobile | `(lat, lng)` từ map center mới                    | B06 |
+| ID  | Trigger                                                             | Nền tảng    | Input                                             | AC  |
+| --- | ------------------------------------------------------------------- | ----------- | ------------------------------------------------- | --- |
+| T01 | Click nút [Nearby] trong Action Bar của Place Detail Panel          | Web, Mobile | `place_id` hoặc `(lat, lng)` của địa điểm đang mở | B01 |
+| T02 | Click vào Category chip trong Quick Filter bar (áp dụng nearby)     | Web, Mobile | `category` + `(lat, lng)` từ map center           | B02 |
+| T03 | Nhập query vào Search Bar → chọn kết quả dạng "Tìm [query] gần đây" | Web, Mobile | `query` + `(lat, lng)` từ vị trí hiện tại         | B03 |
+| T05 | Deep link URL `/search/[query]?near=lat,lng` hoặc `/@lat,lng,zoom`  | Web         | `query` + `(lat, lng)` từ URL params              | B05 |
+| T06 | Pan / zoom bản đồ → nút "Search this area" / tự động cập nhật       | Web, Mobile | `(lat, lng)` từ map center mới                    | B06 |
+| T07 | Cuộn danh sách kết quả xuống gần cuối (Infinity scroll)             | Web, Mobile | `page` / `offset` tiếp theo                       | B12 |
+| T08 | Click nút "Back to top"                                             | Web, Mobile | —                                                 | B12 |
+| T09 | Hover từng kết quả result trong danh sách                           | Web         | Kết quả tương ứng                                 | B08 |
 
 ### States Inventory
 
-| State          | Mô tả                             | Component                                |
-| -------------- | --------------------------------- | ---------------------------------------- |
-| `idle`         | Chưa có tìm kiếm                  | Không có result panel / markers          |
-| `loading`      | Chờ Nearby API response           | Result panel + skeleton list             |
-| `success`      | Có kết quả                        | Result list + POI markers trên bản đồ    |
-| `zero_results` | Không có địa điểm trong bán kính  | Empty state panel                        |
-| `error`        | API lỗi / timeout                 | Toast                                    |
-| `expanded`     | Người dùng kéo xem thêm kết quả  | Bottom sheet full-screen (mobile)        |
+| State          | Mô tả                            | Component                             |
+| -------------- | -------------------------------- | ------------------------------------- |
+| `idle`         | Chưa có tìm kiếm                 | Không có result panel / markers       |
+| `loading`      | Chờ Nearby API response          | Result panel + skeleton list          |
+| `success`      | Có kết quả                       | Result list + POI markers trên bản đồ |
+| `zero_results` | Không có địa điểm trong bán kính | Empty state panel                     |
+| `error`        | API lỗi / timeout                | Toast                                 |
+| `expanded`     | Người dùng kéo xem thêm kết quả  | Bottom sheet full-screen (mobile)     |
 
 ### Components, Responsive & Typography
 
 #### Component Inventory
 
-| Component                              | Dùng trong                  |
-| -------------------------------------- | --------------------------- |
-| Nearby Result Panel (side panel)       | Web / tablet                |
-| Nearby Result Bottom Sheet             | Mobile                      |
-| POI Marker cluster trên bản đồ         | T01–T06 (success state)     |
-| Result List Item (thumbnail + details) | Success state               |
-| Skeleton List (3–5 items)              | Loading state               |
-| Distance badge trên mỗi result item    | Success state               |
-| Sort / Filter chips (Gần nhất, Rating) | Success state               |
-| "Tìm kiếm trong khu vực này" banner    | T06 (search-on-move)        |
-| Empty State illustration               | zero_results state          |
-| Toast notification                     | Error state                 |
-| Category chip (Quick Filters)          | T02                         |
+| Component                                | Dùng trong              |
+| ---------------------------------------- | ----------------------- |
+| Nearby Result Panel (side panel)         | Web / tablet            |
+| Nearby Result Bottom Sheet               | Mobile                  |
+| POI Marker cluster trên bản đồ           | T01–T06 (success state) |
+| Result List Item (thumbnail + details)   | Success state           |
+| Skeleton List (3–5 items)                | Loading state           |
+| Distance badge trên mỗi result item      | Success state           |
+| Sort / Filter chips (Gần nhất, Rating)   | Success state           |
+| Checkbox "Update results when map moves" | Success state           |
+| Nút "Search this area"                   | T06 (search-on-move)    |
+| Empty State illustration                 | zero_results state      |
+| Toast notification                       | Error state             |
+| Category chip (Quick Filters)            | T02                     |
+| Nút "Back to top"                        | khi cuộn list kết quả   |
+| Infinity scroll loader                   | khi load thêm trang     |
+| Marker highlight (khi hover)             | Success state (hover)   |
 
 #### Responsive Behavior
 
-| Breakpoint                 | Layout hiển thị                        | Result list         |
-| -------------------------- | -------------------------------------- | ------------------- |
-| Mobile portrait (< 768px)  | Bottom Sheet (peek 40%, full drag)     | Scroll dọc trong BS |
-| Mobile landscape (< 768px) | Side panel hẹp (35% width)             | Scroll dọc          |
-| Tablet (768px–1024px)      | Side panel tiêu chuẩn (360px)          | Scroll dọc          |
-| Desktop (> 1024px)         | Side panel tiêu chuẩn (400px)          | Scroll dọc          |
+| Breakpoint                 | Layout hiển thị                    | Result list         |
+| -------------------------- | ---------------------------------- | ------------------- |
+| Mobile portrait (< 768px)  | Bottom Sheet (peek 40%, full drag) | Scroll dọc trong BS |
+| Mobile landscape (< 768px) | Side panel hẹp (35% width)         | Scroll dọc          |
+| Tablet (768px–1024px)      | Side panel tiêu chuẩn (360px)      | Scroll dọc          |
+| Desktop (> 1024px)         | Side panel tiêu chuẩn (400px)      | Scroll dọc          |
 
 #### Typography
 
@@ -133,15 +139,6 @@ Given  vị trí GPS chưa được cấp quyền
 Then   hệ thống dùng map center làm fallback (không yêu cầu location permission ở bước này)
 ```
 
-#### AC-B04 · Nearby từ "Khám phá khu vực này" (T04)
-
-```gherkin
-Given  bản đồ đang ở trạng thái idle (không có panel nào mở)
-When   người dùng click nút [Khám phá khu vực này]
-Then   gọi Nearby API với category "Tất cả" và tọa độ center bản đồ
-And    Result Panel mở với kết quả tổng hợp
-```
-
 #### AC-B05 · Deep Link URL (T05)
 
 ```gherkin
@@ -157,16 +154,25 @@ Then   hệ thống fallback về map center mặc định và thực hiện tì
 
 ```gherkin
 Given  Nearby Result Panel đang mở
-When   người dùng pan hoặc zoom bản đồ ra ngoài ngưỡng (di chuyển > 20% viewport)
-Then   banner "Tìm kiếm trong khu vực này" xuất hiện phía trên Result Panel
+And    checkbox "Update results when map moves" đang TẮT
+And    nút "Search this area" mặc định đang ẨN
+When   người dùng pan hoặc zoom bản đồ ra ngoài vị trí search cũ (di chuyển > 20% viewport)
+Then   nút "Search this area" xuất hiện phía trên Result Panel
 
-Given  người dùng click banner "Tìm kiếm trong khu vực này"
-Then   banner biến mất, hệ thống gọi lại Nearby API với center mới
+Given  người dùng click nút "Search this area"
+Then   nút "Search this area" biến mất, hệ thống gọi lại Nearby API với center mới
 And    result list refresh với kết quả mới
 And    POI markers cũ xóa, markers mới hiển thị
 
-Given  người dùng không click banner và tiếp tục pan
-Then   banner vẫn hiển thị (không tự động trigger search)
+Given  người dùng không click nút "Search this area" và tiếp tục pan
+Then   nút "Search this area" vẫn hiển thị (không tự động trigger search)
+
+Given  Nearby Result Panel đang mở
+And    checkbox "Update results when map moves" đang BẬT
+When   người dùng pan hoặc zoom bản đồ ra ngoài ngưỡng
+Then   không hiển thị nút "Search this area"
+And    hệ thống tự động gọi lại Nearby API với center mới
+And    result list và POI markers tự động cập nhật
 ```
 
 #### AC-B07 · Skeleton Loading state
@@ -191,7 +197,8 @@ Then   danh sách items hiển thị, mỗi item gồm:
        - Khoảng cách từ điểm tham chiếu (ví dụ: "350m", "1.2km")
        - Rating ngắn gọn (nếu có)
 And    POI markers tương ứng xuất hiện trên bản đồ
-And    hover item trong list → highlight marker tương ứng trên bản đồ (web)
+And    khi hover từng kết quả result trong danh sách → marker hiện tại trên bản đồ sẽ thay thế bằng marker highlight (web)
+And    khi bỏ hover → marker highlight trở về marker hiện tại bình thường
 And    Sort chips: [Gần nhất] [Đánh giá cao] hiển thị đầu danh sách
 ```
 
@@ -225,6 +232,23 @@ And    URL trở về trạng thái trước
 
 Given  người dùng click vào một item trong danh sách
 Then   Place Detail Panel mở cho item đó (xem AC place-detail §B03)
+```
+
+#### AC-B12 · Infinity scroll & Back to top (T07, T08)
+
+```gherkin
+Given  Nearby Result Panel đang hiển thị danh sách kết quả
+When   người dùng cuộn danh sách xuống dưới
+Then   nút "Back to top" xuất hiện nổi trên danh sách
+
+Given  người dùng cuộn xuống gần cuối danh sách
+Then   hệ thống tự động trigger gọi API để tải thêm kết quả (Infinity scroll)
+And    hiển thị loader báo đang tải ở cuối danh sách
+And    kết quả mới được nạp và thêm vào cuối danh sách
+
+Given  người dùng click nút "Back to top"
+Then   danh sách tự động cuộn lên trên cùng (smooth scroll)
+And    nút "Back to top" biến mất
 ```
 
 ### Flow — UI

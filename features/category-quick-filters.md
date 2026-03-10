@@ -40,49 +40,56 @@ Category Quick Filters là thanh chip filter nằm ngang phía trên bản đồ
 
 ### Triggers & Entry Points
 
-| ID  | Trigger                                                                           | Nền tảng    | Input                                             | AC  |
-| --- | --------------------------------------------------------------------------------- | ----------- | ------------------------------------------------- | --- |
-| T01 | Click / tap vào Category chip trong Filter bar (trạng thái idle)                 | Web, Mobile | `category_id` + `(lat, lng)` từ map center        | B01 |
-| T02 | Click / tap lại vào Category chip đang active (toggle off)                       | Web, Mobile | `category_id` đang active                         | B02 |
-| T03 | Chọn category từ Place Detail → [Nearby] với category được pre-fill              | Web, Mobile | `category_id` từ Place Detail + `(lat, lng)`      | B03 |
-| T04 | URL deep link `?category=[category_id]` hoặc `/search/[category]/@lat,lng,zoom` | Web         | `category_id` + `(lat, lng)` từ URL params        | B04 |
-| T05 | Scroll ngang Filter bar để xem thêm category                                     | Web, Mobile | —                                                 | B05 |
-| T06 | Bản đồ pan / zoom khi filter đang active (search-on-move)                        | Web, Mobile | `category_id` đang active + `(lat, lng)` map center mới | B06 |
+| ID  | Trigger                                                                         | Nền tảng    | Input                                                   | AC  |
+| --- | ------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------- | --- |
+| T01 | Click / tap vào Category chip trong Filter bar (trạng thái idle)                | Web, Mobile | `category_id` + `(lat, lng)` từ map center              | B01 |
+| T02 | Click / tap lại vào Category chip đang active (toggle off)                      | Web, Mobile | `category_id` đang active                               | B02 |
+| T03 | Chọn category từ Place Detail → [Nearby] với category được pre-fill             | Web, Mobile | `category_id` từ Place Detail + `(lat, lng)`            | B03 |
+| T04 | URL deep link `?category=[category_id]` hoặc `/search/[category]/@lat,lng,zoom` | Web         | `category_id` + `(lat, lng)` từ URL params              | B04 |
+| T05 | Scroll ngang Filter bar để xem thêm category                                    | Web, Mobile | —                                                       | B05 |
+| T06 | Pan / zoom bản đồ → nút "Search this area" / tự động cập nhật                   | Web, Mobile | `(lat, lng)` từ map center mới                          | B06 |
+| T07 | Click / tap nút "Search this area"                                              | Web, Mobile | `category_id` đang active + `(lat, lng)` map center mới | B06 |
+| T08 | Cuộn danh sách kết quả xuống gần cuối (Infinity scroll)                         | Web, Mobile | `page` / `offset` API                                   | B12 |
 
 ### States Inventory
 
-| State          | Mô tả                                         | Component                                    |
-| -------------- | --------------------------------------------- | -------------------------------------------- |
-| `idle`         | Không có chip nào được chọn                   | Filter bar hiển thị tất cả chips bình thường |
-| `active`       | Một chip đang được chọn                       | Chip active highlighted, Nearby loading/open |
-| `loading`      | Chip vừa được click, đang gọi Nearby API      | Chip active + spinner nhỏ trên chip          |
-| `success`      | Nearby API trả về kết quả                     | Chip active, markers + Result Panel hiển thị |
+| State          | Mô tả                                          | Component                                    |
+| -------------- | ---------------------------------------------- | -------------------------------------------- |
+| `idle`         | Không có chip nào được chọn                    | Filter bar hiển thị tất cả chips bình thường |
+| `active`       | Một chip đang được chọn                        | Chip active highlighted, Nearby loading/open |
+| `loading`      | Chip vừa được click, đang gọi Nearby API       | Chip active + spinner nhỏ trên chip          |
+| `success`      | Nearby API trả về kết quả                      | Chip active, markers + Result Panel hiển thị |
 | `zero_results` | Không có POI theo category trong vùng hiện tại | Chip active, Result Panel empty state        |
-| `error`        | Nearby API lỗi                                | Chip reset về idle, Toast                    |
+| `error`        | Nearby API lỗi                                 | Chip reset về idle, Toast                    |
 
 ### Components, Responsive & Typography
 
 #### Component Inventory
 
-| Component                                       | Dùng trong                 |
-| ----------------------------------------------- | -------------------------- |
-| Filter Bar (horizontal scroll container)        | Tất cả states              |
-| Category Chip (icon + label)                    | Tất cả states              |
-| Category Chip — Active variant                  | active, loading, success   |
-| Category Chip — Loading variant (spinner)       | loading state              |
-| Scroll arrow indicator (trái / phải)            | Web — khi có overflow      |
-| POI Markers theo category (màu / icon riêng)    | success state              |
-| Nearby Result Panel (kế thừa search-nearby)     | success, zero_results      |
-| Toast notification                              | error state                |
+| Component                                    | Dùng trong               |
+| -------------------------------------------- | ------------------------ |
+| Filter Bar (horizontal scroll container)     | Tất cả states            |
+| Category Chip (icon + label)                 | Tất cả states            |
+| Category Chip — Active variant               | active, loading, success |
+| Category Chip — Loading variant (spinner)    | loading state            |
+| Scroll arrow indicator (trái / phải)         | Web — khi có overflow    |
+| POI Markers theo category (màu / icon riêng) | success state            |
+| Nearby Result Panel (kế thừa search-nearby)  | success, zero_results    |
+| Toast notification                           | error state              |
+| Checkbox "Update results when map moves"     | khi có filter active     |
+| Nút "Search this area"                       | khi bản đồ pan / zoom    |
+| Nút "Back to top"                            | khi cuộn list kết quả    |
+| Infinity scroll loader                       | khi load thêm trang      |
+| Marker highlight (khi hover)                 | success state (hover)    |
 
 #### Responsive Behavior
 
-| Breakpoint                 | Filter bar layout                          | Chip style           |
-| -------------------------- | ------------------------------------------ | -------------------- |
+| Breakpoint                 | Filter bar layout                             | Chip style                   |
+| -------------------------- | --------------------------------------------- | ---------------------------- |
 | Mobile portrait (< 768px)  | Scroll ngang toàn chiều rộng, dưới Search Bar | Compact (icon + short label) |
-| Mobile landscape (< 768px) | Scroll ngang, dưới Search Bar              | Standard             |
-| Tablet (768px–1024px)      | Scroll ngang, dưới Search Bar              | Standard             |
-| Desktop (> 1024px)         | Scroll ngang + arrow indicators khi overflow | Standard + arrow btn |
+| Mobile landscape (< 768px) | Scroll ngang, dưới Search Bar                 | Standard                     |
+| Tablet (768px–1024px)      | Scroll ngang, dưới Search Bar                 | Standard                     |
+| Desktop (> 1024px)         | Scroll ngang + arrow indicators khi overflow  | Standard + arrow btn         |
 
 #### Typography
 
@@ -153,16 +160,26 @@ Given  người dùng scroll ngang trong khi có chip active
 Then   chip active vẫn visible (auto-scroll chip active vào viewport)
 ```
 
-#### AC-B06 · Search-on-move khi filter active (T06)
+#### AC-B06 · Search-on-move khi filter active (T06, T07)
 
 ```gherkin
 Given  một Category chip đang active và Result Panel đang mở
-When   người dùng pan / zoom bản đồ ra ngoài ngưỡng (> 20% viewport shift)
-Then   banner "Tìm kiếm trong khu vực này" hiển thị (kế thừa search-nearby §B06)
+And    checkbox "Update results when map moves" đang TẮT
+And    nút "Search this area" mặc định đang ẨN
+When   người dùng pan / zoom bản đồ ra ngoài vị trí search cũ (> 20% viewport shift)
+Then   nút "Search this area" hiển thị (kế thừa search-nearby §B06)
 
-Given  người dùng click banner
+Given  người dùng click nút "Search this area"
 Then   Nearby API được gọi lại với category đang active + map center mới
 And    markers và Result Panel cập nhật với kết quả mới
+And    nút "Search this area" biến mất
+
+Given  một Category chip đang active và Result Panel đang mở
+And    checkbox "Update results when map moves" đang BẬT
+When   người dùng pan / zoom bản đồ ra ngoài ngưỡng (> 20% viewport shift)
+Then   không hiển thị nút "Search this area"
+And    Nearby API tự động được gọi lại với category đang active + map center mới
+And    markers và Result Panel tự động cập nhật với kết quả mới
 ```
 
 #### AC-B07 · Loading state
@@ -218,6 +235,32 @@ And    category có flag sponsored hiển thị badge "Nổi bật" (nếu có)
 Given  danh sách category không fetch được từ CMS (lỗi / offline)
 Then   Filter bar dùng danh sách default hardcode (fallback)
 And    không hiển thị badge sponsored
+```
+
+#### AC-B12 · Infinity scroll & Back to top (T08)
+
+```gherkin
+Given  Result Panel đang hiển thị danh sách kết quả
+When   người dùng cuộn danh sách xuống dưới
+Then   nút "Back to top" xuất hiện nổi trên danh sách
+
+Given  người dùng cuộn xuống gần cuối danh sách
+Then   hệ thống tự động trigger gọi API để tải thêm kết quả (Infinity scroll)
+And    hiển thị loader báo đang tải ở cuối danh sách
+And    kết quả mới được nạp và thêm vào cuối danh sách
+
+Given  người dùng click nút "Back to top"
+Then   danh sách tự động cuộn lên trên cùng (smooth scroll)
+And    nút "Back to top" biến mất
+```
+
+#### AC-B13 · Hover kết quả result
+
+```gherkin
+Given  danh sách kết quả đang hiển thị trên thiết bị hỗ trợ hover (Web)
+When   người dùng hover từng kết quả result trong danh sách
+Then   marker hiện tại tương ứng trên bản đồ sẽ thay thế bằng marker highlight
+And    khi người dùng bỏ hover, marker highlight trở về marker hiện tại bình thường
 ```
 
 ### Flow — UI
