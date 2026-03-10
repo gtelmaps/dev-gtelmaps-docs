@@ -183,10 +183,21 @@ Then   panel hiển thị đầy đủ:
        - Tên địa điểm (h1)
        - Category / loại địa điểm
        - Địa chỉ đầy đủ
+       - Tọa độ (Plus Code / Lat-Long)
        - Số điện thoại (nếu có)
        - Website (nếu có)
+       - Thêm nhãn (Add a label)
 And    Action buttons hiển thị 5 tính năng
 And    nút [×] để đóng panel, URL trở về trạng thái trước
+And    Place Detail Panel hỗ trợ scroll dọc để hiển thị các thông tin bên dưới (độc lập với bản đồ)
+
+Given  người dùng click / tap vào icon copy cạnh các trường thông tin (địa chỉ, tọa độ, số điện thoại, website)
+Then   hệ thống copy giá trị tương ứng vào clipboard
+And    hiển thị toast thông báo "Đã sao chép vào khay nhớ tạm" (tự ẩn sau khoảng 3s)
+
+Given  người dùng click chọn mục "Thêm nhãn" (Add a label)
+Then   mở popup/form cho phép người dùng nhập nhãn mới hoặc chọn nhãn có sẵn (Nhà, Cơ quan...)
+And    sau khi lưu, nhãn sẽ được hiển thị ngay trên chi tiết địa điểm và ghi nhận vào hệ thống
 ```
 
 #### AC-B07 · NOT_FOUND state
