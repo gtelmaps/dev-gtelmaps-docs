@@ -46,7 +46,7 @@ Reverse Geocoding chuyển đổi tọa độ địa lý (lat, lng) thành đị
 | T02 | Right-click → Context Menu → "Đây là đâu?"       | Web         | `(lat, lng)` từ right-click event | B08 |
 | T03 | Long press ≥ 500ms                               | Mobile      | `(lat, lng)` từ long press event  | B09 |
 | T04 | Nhập tọa độ vào Search Bar                       | Web, Mobile | String `"lat, lng"`               | B11 |
-| T05 | Deep link URL /place/[lat,lon]/@lat,lon,zoom...  | Web         | URL query params                  | B12 |
+| T05 | Deep link URL /search/[lat,lon]/@lat,lon,zoom... | Web         | URL query params                  | B12 |
 | T06 | Vị trí GPS hiện tại → thông tin địa chỉ hiện tại | Mobile, Web | `(lat, lng)` từ Geolocation API   | B13 |
 
 ### States Inventory
