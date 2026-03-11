@@ -9,9 +9,9 @@
 - [x][Administrative Boundaries](./features/administrative-boundaries.md)
 - [x][Recent Searches](./features/recent-searches.md)
 - [x][Autocomplete Geocoding](./features/autocomplete-geocoding.md)
-- [-][Unified Search Bar](./features/unified-search-bar.md)
-- [ ][Context Menu](./features/context-menu.md)
-- [ ][Map URL](./features/map-url.md)
+- [x][Unified Search Bar](./features/unified-search-bar.md)
+- [x][Context Menu](./features/context-menu.md)
+- [x][Map URL](./features/map-url.md)
 
 ---
 
