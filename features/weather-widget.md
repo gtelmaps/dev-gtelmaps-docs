@@ -32,11 +32,11 @@ Weather Widget là thành phần UI hiển thị thông tin thời tiết hiện
 
 ## Unique Selling Propositions (USP)
 
-| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
-| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| 1  | Weather API nội bộ GTEL          | Dữ liệu thời tiết từ nguồn nội địa hoặc đối tác GTEL phê duyệt — data sovereignty        | Google Maps không có weather widget tích hợp sẵn     |
-| 2  | Cập nhật theo vùng bản đồ        | Widget tự cập nhật khi pan bản đồ sang vùng địa lý mới                                    | Google Maps không hiển thị thời tiết trên bản đồ     |
-| 3  | Tích hợp Fleet / Logistics       | Cung cấp dữ liệu thời tiết realtime cho lập kế hoạch vận chuyển — API nội bộ, không giới hạn call | Không có tương đương trên Google Maps               |
+| #   | USP                        | Mô tả                                                                                             | So sánh                                          |
+| --- | -------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| 1   | Weather API nội bộ GTEL    | Dữ liệu thời tiết từ nguồn nội địa hoặc đối tác GTEL phê duyệt — data sovereignty                 | Google Maps không có weather widget tích hợp sẵn |
+| 2   | Cập nhật theo vùng bản đồ  | Widget tự cập nhật khi pan bản đồ sang vùng địa lý mới                                            | Google Maps không hiển thị thời tiết trên bản đồ |
+| 3   | Tích hợp Fleet / Logistics | Cung cấp dữ liệu thời tiết realtime cho lập kế hoạch vận chuyển — API nội bộ, không giới hạn call | Không có tương đương trên Google Maps            |
 
 ---
 
@@ -49,55 +49,56 @@ Weather Widget là thành phần UI hiển thị thông tin thời tiết hiện
 ### Triggers & Entry Points
 
 **Entry Points (Điểm bắt đầu):**
+
 - **Sự kiện Bản đồ (Map Events):** Khởi động ứng dụng, tải bản đồ hoặc sau khi tương tác di chuyển.
 - **Weather Widget:** Tương tác trực tiếp trên giao diện của widget (click, pull-to-refresh).
 - **Hệ thống (System):** Hệ thống cập nhật ngầm khi dữ liệu hết hạn.
 
 **Triggers (Hành động kích hoạt cụ thể):**
 
-| ID  | Trigger                                                          | Nền tảng    | Input                                     | AC  |
-| --- | ---------------------------------------------------------------- | ----------- | ----------------------------------------- | --- |
-| T01 | Bản đồ load lần đầu (khởi động app)                             | Web, Mobile | `(lat, lng)` từ map center khởi tạo       | B01 |
-| T02 | Bản đồ dừng di chuyển sau pan / zoom (idle event)               | Web, Mobile | `(lat, lng)` từ map center mới            | B02 |
-| T03 | Click / tap vào Weather Widget (mở Weather Detail)              | Web, Mobile | `(lat, lng)` hiện tại                     | B03 |
-| T04 | Pull-to-refresh trên mobile / nút refresh trong Weather Detail  | Mobile, Web | `(lat, lng)` hiện tại                     | B04 |
-| T05 | TTL cache hết hạn — tự động refetch nền                         | Web, Mobile | `(lat, lng)` hiện tại                     | B05 |
+| ID  | Trigger                                                        | Nền tảng    | Input                               | AC  |
+| --- | -------------------------------------------------------------- | ----------- | ----------------------------------- | --- |
+| T01 | Bản đồ load lần đầu (khởi động app)                            | Web, Mobile | `(lat, lng)` từ map center khởi tạo | B01 |
+| T02 | Bản đồ dừng di chuyển sau pan / zoom (idle event)              | Web, Mobile | `(lat, lng)` từ map center mới      | B02 |
+| T03 | Click / tap vào Weather Widget (mở Weather Detail)             | Web, Mobile | `(lat, lng)` hiện tại               | B03 |
+| T04 | Pull-to-refresh trên mobile / nút refresh trong Weather Detail | Mobile, Web | `(lat, lng)` hiện tại               | B04 |
+| T05 | TTL cache hết hạn — tự động refetch nền                        | Web, Mobile | `(lat, lng)` hiện tại               | B05 |
 
 ### States Inventory
 
-| State     | Mô tả                                           | Component                            |
-| --------- | ----------------------------------------------- | ------------------------------------ |
-| `hidden`  | Widget ẩn (feature flag off hoặc API lỗi liên tiếp) | Không hiển thị                    |
-| `loading` | Đang fetch thời tiết lần đầu                    | Widget skeleton (icon + temp placeholder) |
-| `success` | Có dữ liệu thời tiết                            | Widget đầy đủ: icon + nhiệt độ + mô tả |
-| `stale`   | Đang refetch nền, đang dùng dữ liệu cũ          | Widget hiển thị bình thường + spinner nhỏ |
-| `error`   | Fetch thất bại, không có cache                  | Widget ẩn hoặc icon "?" + tooltip lỗi |
+| State     | Mô tả                                               | Component                                 |
+| --------- | --------------------------------------------------- | ----------------------------------------- |
+| `hidden`  | Widget ẩn (feature flag off hoặc API lỗi liên tiếp) | Không hiển thị                            |
+| `loading` | Đang fetch thời tiết lần đầu                        | Widget skeleton (icon + temp placeholder) |
+| `success` | Có dữ liệu thời tiết                                | Widget đầy đủ: icon + nhiệt độ + mô tả    |
+| `stale`   | Đang refetch nền, đang dùng dữ liệu cũ              | Widget hiển thị bình thường + spinner nhỏ |
+| `error`   | Fetch thất bại, không có cache                      | Widget ẩn hoặc icon "?" + tooltip lỗi     |
 
 ### Components, Responsive & Typography
 
 #### Component Inventory
 
-| Component                                    | Dùng trong                  |
-| -------------------------------------------- | --------------------------- |
-| Weather Widget (compact)                     | T01–T05 (corner overlay)    |
-| Weather icon (animated SVG / lottie)         | Success, stale state        |
-| Temperature display                          | Success, stale state        |
-| Stale refresh spinner                        | Stale state                 |
-| Weather Detail Popover / Bottom Sheet        | T03                         |
-| Hourly forecast row (24h)                    | Weather Detail              |
-| Daily forecast list (7 ngày)                 | Weather Detail              |
-| Weather condition description                | Weather Detail              |
-| Wind, humidity, UV index summary             | Weather Detail              |
-| Refresh button                               | T04 (Weather Detail header) |
+| Component                             | Dùng trong                  |
+| ------------------------------------- | --------------------------- |
+| Weather Widget (compact)              | T01–T05 (corner overlay)    |
+| Weather icon (animated SVG / lottie)  | Success, stale state        |
+| Temperature display                   | Success, stale state        |
+| Stale refresh spinner                 | Stale state                 |
+| Weather Detail Popover / Bottom Sheet | T03                         |
+| Hourly forecast row (24h)             | Weather Detail              |
+| Daily forecast list (7 ngày)          | Weather Detail              |
+| Weather condition description         | Weather Detail              |
+| Wind, humidity, UV index summary      | Weather Detail              |
+| Refresh button                        | T04 (Weather Detail header) |
 
 #### Responsive Behavior
 
-| Breakpoint                 | Widget position              | Weather Detail layout       |
-| -------------------------- | ---------------------------- | --------------------------- |
-| Mobile portrait (< 768px)  | Bottom-right, above zoom btn | Bottom Sheet (half-screen)  |
-| Mobile landscape (< 768px) | Top-right corner             | Popover cạnh widget         |
-| Tablet (768px–1024px)      | Top-right corner             | Popover cạnh widget         |
-| Desktop (> 1024px)         | Top-right corner             | Popover cạnh widget         |
+| Breakpoint                 | Widget position              | Weather Detail layout      |
+| -------------------------- | ---------------------------- | -------------------------- |
+| Mobile portrait (< 768px)  | Bottom-right, above zoom btn | Bottom Sheet (half-screen) |
+| Mobile landscape (< 768px) | Top-right corner             | Popover cạnh widget        |
+| Tablet (768px–1024px)      | Top-right corner             | Popover cạnh widget        |
+| Desktop (> 1024px)         | Top-right corner             | Popover cạnh widget        |
 
 #### Typography
 
