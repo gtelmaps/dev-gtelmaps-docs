@@ -41,38 +41,38 @@ _Không có backend riêng — Context Menu điều phối các feature khác._
 
 ### Menu Items
 
-| Group | Item                     | Action                                           | Feature liên quan          |
-| ----- | ------------------------ | ------------------------------------------------ | -------------------------- |
-| Info  | `{Lat}, {Lon}`           | Copy tọa độ vào clipboard                        | —                          |
-| —     | Chia sẻ vị trí này       | Copy link / mở Share dialog                      | map-url.md                 |
-| Nav   | Chỉ đường đến đây        | Mở Directions với destination = vị trí click    | directions.md              |
-| —     | Chỉ đường từ đây         | Mở Directions với origin = vị trí click         | directions.md              |
-| —     | Đây là đâu?              | Reverse Geocoding tại vị trí click              | reverse-geocoding.md       |
-| —     | Tìm kiếm gần đây         | Mở Search Nearby tại vị trí click              | search-nearby.md           |
-| ——    | *(separator)*            | —                                                | —                          |
-| Data  | Thêm địa điểm còn thiếu  | Mở form thêm địa điểm                            | (external contribution)    |
-| —     | Báo cáo sai dữ liệu      | Mở form báo cáo                                  | (external feedback)        |
-| ——    | *(separator)*            | —                                                | —                          |
-| Tools | In bản đồ                | Mở print dialog                                  | —                          |
-| —     | Đo khoảng cách           | Kích hoạt Measure Distance tool                  | (measure.md)               |
-| —     | Đo diện tích             | Kích hoạt Measure Area tool                      | (measure.md)               |
-| —     | Đo bán kính              | Kích hoạt Measure Radius tool                    | (measure.md)               |
+| Group | Item                    | Action                                       | Feature liên quan       |
+| ----- | ----------------------- | -------------------------------------------- | ----------------------- |
+| Info  | `{Lat}, {Lon}`          | Copy tọa độ vào clipboard                    | —                       |
+| —     | Chia sẻ vị trí này      | Copy link / mở Share dialog                  | map-url.md              |
+| Nav   | Chỉ đường đến đây       | Mở Directions với destination = vị trí click | directions.md           |
+| —     | Chỉ đường từ đây        | Mở Directions với origin = vị trí click      | directions.md           |
+| —     | Đây là đâu?             | Reverse Geocoding tại vị trí click           | reverse-geocoding.md    |
+| —     | Tìm kiếm gần đây        | Mở Search Nearby tại vị trí click            | search-nearby.md        |
+| ——    | _(separator)_           | —                                            | —                       |
+| Data  | Thêm địa điểm còn thiếu | Mở form thêm địa điểm                        | (external contribution) |
+| —     | Báo cáo sai dữ liệu     | Mở form báo cáo                              | (external feedback)     |
+| ——    | _(separator)_           | —                                            | —                       |
+| Tools | In bản đồ               | Mở print dialog                              | —                       |
+| —     | Đo khoảng cách          | Kích hoạt Measure Distance tool              | (measure.md)            |
+| —     | Đo diện tích            | Kích hoạt Measure Area tool                  | (measure.md)            |
+| —     | Đo bán kính             | Kích hoạt Measure Radius tool                | (measure.md)            |
 
 ### Triggers & Entry Points
 
-| ID  | Trigger                                            | Nền tảng | Input                         | AC  |
-| --- | -------------------------------------------------- | -------- | ----------------------------- | --- |
-| T01 | Right-click trên vùng bản đồ trống                 | Web      | `(lat, lng)` từ event         | B01 |
-| T02 | Right-click trên POI marker                        | Web      | `place_id` + `(lat, lng)`     | B02 |
-| T03 | Click một menu item                                | Web      | Item action                   | B03 |
-| T04 | Di chuyển bản đồ / click ra ngoài / Escape         | Web      | —                             | B04 |
+| ID  | Trigger                                    | Nền tảng | Input                     | AC  |
+| --- | ------------------------------------------ | -------- | ------------------------- | --- |
+| T01 | Right-click trên vùng bản đồ trống         | Web      | `(lat, lng)` từ event     | B01 |
+| T02 | Right-click trên POI marker                | Web      | `place_id` + `(lat, lng)` | B02 |
+| T03 | Click một menu item                        | Web      | Item action               | B03 |
+| T04 | Di chuyển bản đồ / click ra ngoài / Escape | Web      | —                         | B04 |
 
 ### States Inventory
 
-| State    | Mô tả                         | Component                  |
-| -------- | ----------------------------- | -------------------------- |
-| `hidden` | Chưa right-click hoặc đã đóng | Menu ẩn                    |
-| `open`   | Đang hiển thị                 | Dropdown menu tại con trỏ  |
+| State    | Mô tả                         | Component                 |
+| -------- | ----------------------------- | ------------------------- |
+| `hidden` | Chưa right-click hoặc đã đóng | Menu ẩn                   |
+| `open`   | Đang hiển thị                 | Dropdown menu tại con trỏ |
 
 ### Components, Responsive & Typography
 
@@ -89,9 +89,9 @@ _Không có backend riêng — Context Menu điều phối các feature khác._
 
 _Context Menu chỉ hiển thị trên Web (desktop). Không có trên mobile — thay thế bởi Long Press (xem map-interaction.md §B07)._
 
-| Breakpoint  | Position                                     |
-| ----------- | -------------------------------------------- |
-| Desktop     | Tại vị trí con trỏ, tự điều chỉnh để không ra ngoài viewport |
+| Breakpoint | Position                                                     |
+| ---------- | ------------------------------------------------------------ |
+| Desktop    | Tại vị trí con trỏ, tự điều chỉnh để không ra ngoài viewport |
 
 #### Typography
 
