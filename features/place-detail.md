@@ -22,7 +22,7 @@
 
 ### What
 
-Place Detail hiển thị thông tin chi tiết (tên, địa chỉ, hình ảnh, giờ mở cửa...) của một địa điểm (POI) khi người dùng chọn từ bản đồ, danh sách tìm kiếm, hoặc qua deep link.
+Place Detail hiển thị thông tin chi tiết của một sự vật/hiện tượng trên bản đồ (POI, địa chỉ, hoặc đơn vị hành chính). Tính năng này **hỗ trợ multilayout** (hiển thị giao diện thay đổi linh hoạt tùy theo loại đối tượng) nhằm cung cấp nhóm thông tin phù hợp nhất theo ngữ cảnh khi người dùng chọn từ bản đồ, danh sách tìm kiếm, hoặc qua deep link.
 
 ### Why
 
@@ -60,6 +60,23 @@ Place Detail hiển thị thông tin chi tiết (tên, địa chỉ, hình ảnh
 | `success`   | Có đầy đủ thông tin địa điểm  | Panel / Bottom sheet + actions         |
 | `not_found` | `place_id` không tồn tại      | Empty state panel                      |
 | `error`     | API lỗi / timeout             | Toast                                  |
+
+### Multi-layout Structure
+
+Place Detail áp dụng cấu trúc **Multilayout** tùy thuộc vào loại đối tượng mà người dùng đang tương tác:
+
+1. **POI / Address Layout (Địa điểm thông thường / Địa chỉ):**
+   - Hiển thị cho các nhà hàng, quán cà phê, vị trí kinh doanh, hoặc một địa chỉ nhà cụ thể.
+   - Tập trung vào tương tác cá nhân và doanh nghiệp: Hình ảnh (Gallery), Giờ mở cửa, Số điện thoại, Website, Review/Đánh giá tiện ích.
+
+2. **Administrative Boundary Layout (Đơn vị hành chính):**
+   - Hiển thị khi người dùng tìm kiếm hoặc chọn một đơn vị hành chính (Tỉnh/Thành phố, Quận/Huyện, Phường/Xã).
+   - Tập trung vào tính chất quản lý và khu vực: 
+     - Phân loại cấp hành chính (Thành phố trực thuộc trung ương, Tỉnh, Quận, Huyện, v.v.).
+     - Breadcrumb vị trí (Ví dụ: Việt Nam > TP. HCM > Quận 1).
+     - Thông tin thống kê chức năng (Diện tích, Dân số, Mật độ dân số) nếu có dữ liệu.
+     - Danh sách các khu vực/đơn vị hành chính trực thuộc.
+   - Hành vi bản đồ tương ứng: Kết hợp tính năng [Administrative Boundaries](./administrative-boundaries.md) để highlight ranh giới (polygon) của khu vực.
 
 ### Components, Responsive & Typography
 
@@ -174,22 +191,34 @@ Then   skeleton không xuất hiện (render trực tiếp kết quả)
 
 > **Lý do 150ms:** Ngưỡng này tránh skeleton flash cho response nhanh, đồng thời cung cấp visual feedback kịp thời cho response chậm hơn.
 
-#### AC-B06 · Success state
+#### AC-B06 · Success state (Multi-layout)
 
 ```gherkin
-Given  Place Detail API trả về thành công
-Then   panel hiển thị đầy đủ:
+Given  Place Detail API trả về thành công đối tượng thuộc loại "POI / Address"
+Then   panel hiển thị layout POI / Địa chỉ, bao gồm:
        - Ảnh địa điểm (carousel nếu nhiều ảnh)
        - Tên địa điểm (h1)
        - Category / loại địa điểm
        - Địa chỉ đầy đủ
        - Tọa độ (Plus Code / Lat-Long)
-       - Số điện thoại (nếu có)
-       - Website (nếu có)
+       - Giờ hoạt động, Số điện thoại, Website (nếu có)
        - Thêm nhãn (Add a label)
-And    Action buttons hiển thị 5 tính năng
+And    Action buttons hiển thị đầy đủ bộ công cụ (VD: Directions, Save, Nearby, Send to phone, Share)
 And    nút [×] để đóng panel, URL trở về trạng thái trước
 And    Place Detail Panel hỗ trợ scroll dọc để hiển thị các thông tin bên dưới (độc lập với bản đồ)
+
+Given  Place Detail API trả về thành công đối tượng thuộc loại "Administrative Boundary" (Ranh giới hành chính)
+Then   panel hiển thị layout Đơn vị hành chính, bao gồm:
+       - Tên đơn vị hành chính (h1)
+       - Phân loại hành chính (VD: Thành phố trực thuộc Trung ương, Quận/Huyện, Phường/Xã...)
+       - Cấp bậc trực thuộc (VD: Nằm trong TP.HCM)
+       - Thông tin thống kê ranh giới: Diện tích, quy mô, dân số (nếu có)
+       - Danh sách các đơn vị cấp dưới trực thuộc
+       - Tọa độ điểm trung tâm
+And    bản đồ đồng thời hiển thị Polygon highlight ranh giới của đơn vị hành chính đó
+And    Action buttons có thể được rút gọn phù hợp với loại dữ liệu này (VD: Directions, Share, Save)
+And    nút [×] để đóng panel, URL trở về trạng thái trước
+And    Place Detail Panel hỗ trợ scroll dọc để hiển thị các thông tin bên dưới
 
 Given  người dùng click / tap vào icon copy cạnh các trường thông tin (địa chỉ, tọa độ, số điện thoại, website)
 Then   hệ thống copy giá trị tương ứng vào clipboard
