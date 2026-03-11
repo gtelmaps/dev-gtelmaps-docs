@@ -41,6 +41,13 @@ _Geolocation API (browser built-in). IP geolocation API (fallback)._
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **App Lifecycle (Vòng đời ứng dụng):** Yêu cầu cấp quyền vị trí lúc khởi động.
+- **UI Component:** Nút `[My Location]` (Định vị) nằm trên giao diện điều khiển.
+- **Sensors (Cảm biến máy):** Tín hiệu tự động thay đổi từ dịch vụ định vị GPS (hoặc Network IP fallback).
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                   | Nền tảng    | Input                               | AC  |
 | --- | --------------------------------------------------------- | ----------- | ----------------------------------- | --- |
 | T01 | Khởi động app lần đầu — xác thực quyền vị trí           | Web, Mobile | Browser Permissions API             | B01 |

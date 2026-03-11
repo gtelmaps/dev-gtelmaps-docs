@@ -65,6 +65,13 @@ _Server-side persistence cho logged-in users (Saved Places, Preferences API). Lo
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **User Actions (Giao diện người dùng):** Các sự thay đổi cài đặt, thao tác lịch sử.
+- **App Lifecycle (Vòng đời ứng dụng):** Quá trình tải (load/hydration) hoặc thiết lập ban đầu.
+- **Auth Events (Tài khoản):** Sự kiện người dùng đăng nhập để đồng bộ.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                    | AC  |
 | --- | ------------------------------------------ | --- |
 | T01 | State thay đổi → persist xuống storage     | B01 |

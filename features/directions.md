@@ -176,14 +176,24 @@ Then   route đó trở thành primary (đậm), các route khác mờ đi
 And    route details (turn-by-turn hoặc transit steps) cập nhật
 ```
 
-#### AC-B07 · Search Along Route
+#### AC-B07 · Explore new places along this route
 
 ```gherkin
 Given  một route đã được chọn
-Then   banner "Tìm dọc tuyến đường" hiển thị
+Then   banner "Explore new places along this route" hiển thị
 When   người dùng click banner và nhập query (vd: "cây xăng")
 Then   tìm kiếm POI nằm gần tuyến đường (bán kính 500m từ route)
 And    kết quả hiển thị trên bản đồ + list
+```
+
+#### AC-B09 · Explore nearby điểm đến
+
+```gherkin
+Given  route đã hoàn thành, destination detail đang hiển thị
+When   người dùng nhấn "Explore nearby"
+Then   gọi Nearby Search xung quanh điểm đến
+And    hiển thị danh sách POI lân cận (ăn uống, khách sạn, ATM...)
+And    markers lân cận xuất hiện trên bản đồ
 ```
 
 #### AC-B08 · Error state

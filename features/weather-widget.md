@@ -40,6 +40,13 @@ Weather Widget là thành phần UI hiển thị thông tin thời tiết hiện
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Sự kiện Bản đồ (Map Events):** Khởi động ứng dụng, tải bản đồ hoặc sau khi tương tác di chuyển.
+- **Weather Widget:** Tương tác trực tiếp trên giao diện của widget (click, pull-to-refresh).
+- **Hệ thống (System):** Hệ thống cập nhật ngầm khi dữ liệu hết hạn.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                          | Nền tảng    | Input                                     | AC  |
 | --- | ---------------------------------------------------------------- | ----------- | ----------------------------------------- | --- |
 | T01 | Bản đồ load lần đầu (khởi động app)                             | Web, Mobile | `(lat, lng)` từ map center khởi tạo       | B01 |

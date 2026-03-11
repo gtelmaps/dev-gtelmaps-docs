@@ -51,6 +51,12 @@ _Client-side LocalStorage. Đồng bộ lên server nếu người dùng đăng 
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Search Bar (Thanh tìm kiếm):** Focus vào ô tìm kiếm khi chưa gõ từ khóa.
+- **Lịch sử hoạt động:** Tự động ghi nhận khi user hoàn thành tìm kiếm hoặc xem chi tiết địa điểm.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                          | Nền tảng    | Input                      | AC  |
 | --- | ------------------------------------------------ | ----------- | -------------------------- | --- |
 | T01 | Focus vào Search Bar (trống)                     | Web, Mobile | —                          | B01 |

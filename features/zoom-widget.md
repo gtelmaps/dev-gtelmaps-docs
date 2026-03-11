@@ -41,6 +41,13 @@ _Không có backend riêng — hoàn toàn là client-side map interaction._
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Zoom Widget Component:** Điều khiển zoom thủ công bằng việc ấn trực tiếp nút `[+]` và `[-]`.
+- **Tương tác Gesture/Thiết bị:** Các hành động zoom bằng cuộn chuột, chạm thao tác (pinch), nhấp đúp con trỏ (double-click) và phím tắt bàn phím.
+- **Hệ thống/API:** Tác động từ tính năng hoặc API gây cập nhật lại zoom level (fly-to) từ nguồn bên ngoài.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                       | Nền tảng    | Input                             | AC  |
 | --- | --------------------------------------------- | ----------- | --------------------------------- | --- |
 | T01 | Click nút [+]                                 | Web         | —                                 | B01 |

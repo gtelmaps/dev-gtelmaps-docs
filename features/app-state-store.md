@@ -63,6 +63,14 @@ interface AppState {
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Component Action:** Bất kỳ dispatch event / cập nhật trạng thái nào từ giao diện.
+- **Browser/URL Navigation:** Sự kiện thay đổi lịch sử trình duyệt.
+- **Map Engine:** Các sự kiện từ thư viện hiển thị bản đồ (moveend, zoomend...).
+- **App Initialization:** Quá trình khôi phục trạng thái (Hydration) ở bước khởi tạo ứng dụng.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                    | AC  |
 | --- | ------------------------------------------ | --- |
 | T01 | Action dispatch từ bất kỳ component        | B01 |

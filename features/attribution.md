@@ -41,6 +41,12 @@ _Attribution text được nhúng trong tile metadata hoặc layer config từ b
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Sự kiện Bản đồ (Map Events):** Quá trình tải lần đầu, người dùng di chuyển sang khu vực mới hoặc thay đổi loại bản đồ.
+- **Tương tác UI:** Click vào thông tin bản quyền trên Attribution text.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                      | Nền tảng    | Input                        | AC  |
 | --- | -------------------------------------------- | ----------- | ---------------------------- | --- |
 | T01 | Bản đồ load lần đầu                          | Web, Mobile | Layer config + tile region   | B01 |

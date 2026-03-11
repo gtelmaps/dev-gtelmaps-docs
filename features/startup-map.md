@@ -41,6 +41,13 @@ _Map tile serving; Session API (nếu có); Geolocation IP fallback API._
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Trình duyệt (Browser):** Mở ứng dụng thông qua URL gốc, thay đổi URL, hoặc thao tác back/forward của trình duyệt.
+- **Deep Link:** Các đường dẫn truy cập cụ thể có truyền dữ liệu tọa độ, tính năng hoặc trạng thái lưu lại.
+- **Permission & Cookie Prompts:** Các hộp thoại hệ thống yêu cầu người dùng tương tác khi khởi tạo.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                               | Nền tảng    | Input                                              | AC  |
 | --- | --------------------------------------------------------------------- | ----------- | -------------------------------------------------- | --- |
 | T01 | Mở URL gốc `/{locale}/maps` không có params                          | Web         | —                                                  | B01 |

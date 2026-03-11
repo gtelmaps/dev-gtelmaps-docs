@@ -40,6 +40,12 @@ Category Quick Filters là thanh chip filter nằm ngang phía trên bản đồ
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Filter bar (Thanh tìm kiếm nhanh):** Thanh chứa các chip danh mục nằm ngang phía trên bản đồ hoặc bên dưới Search Bar.
+- **Place Detail / Bản đồ:** Tương tác chuyển tiếp từ một địa điểm hoặc thao tác bản đồ (pan/zoom).
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                                         | Nền tảng    | Input                                                   | AC  |
 | --- | ------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------- | --- |
 | T01 | Click / tap vào Category chip trong Filter bar (trạng thái idle)                | Web, Mobile | `category_id` + `(lat, lng)` từ map center              | B01 |

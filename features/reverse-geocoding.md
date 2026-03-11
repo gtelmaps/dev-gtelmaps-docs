@@ -40,6 +40,13 @@ Reverse Geocoding chuyển đổi tọa độ địa lý (lat, lng) thành đị
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Bản đồ (Map):** Tương tác trực tiếp trên bản đồ (Click/Tap, Long Press).
+- **Context Menu:** Trình đơn chuột phải trên bản đồ.
+- **Search Bar / URL:** Nhập tọa độ trực tiếp hoặc truy cập qua Deep Link.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                          | Nền tảng    | Input                             | AC  |
 | --- | ------------------------------------------------ | ----------- | --------------------------------- | --- |
 | T01 | Click / tap trên bản đồ                          | Web         | `(lat, lng)` từ map click event   | B01 |

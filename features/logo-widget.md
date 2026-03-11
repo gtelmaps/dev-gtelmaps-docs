@@ -41,6 +41,12 @@ _Không có backend riêng. White-label config đọc từ app config / embed pa
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Logo UI:** Widget chứa hình ảnh Logo hiển thị cố định ở góc dưới UI bản đồ.
+- **Theme/Config App:** Tính năng thay đổi giao diện theo config (light/dark mode) hay thay đổi bộ cấu hình white-label từ đối tác.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                       | Nền tảng    | Input                  | AC  |
 | --- | --------------------------------------------- | ----------- | ---------------------- | --- |
 | T01 | Bản đồ load lần đầu                           | Web, Mobile | —                      | B01 |

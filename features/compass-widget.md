@@ -41,6 +41,12 @@ _Không có backend riêng — hoàn toàn là client-side._
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Tương tác Bản đồ:** Bất kỳ thao tác touch/chuột/bàn phím nào làm thay đổi góc quay (heading) của bản đồ so với hướng Bắc mặc định (0°).
+- **Compass Widget:** Biểu tượng la bàn nằm trên giao diện điều khiển của màn hình.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                            | Nền tảng    | Input                    | AC  |
 | --- | ------------------------------------------------------------------ | ----------- | ------------------------ | --- |
 | T01 | Bản đồ bị xoay (heading thay đổi từ 0°)                           | Web, Mobile | `heading` (degrees)      | B01 |

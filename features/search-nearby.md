@@ -64,6 +64,14 @@ Search Nearby tìm kiếm các địa điểm (POI) trong bán kính xung quanh 
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Place Detail Panel:** Xem chi tiết một địa điểm và bấm tìm xung quanh.
+- **Search Bar & Quick Filter:** Tìm bằng thanh tìm kiếm hoặc chip danh mục.
+- **Bản đồ (Map):** Di chuyển và tìm trong khu vực hiện tại.
+- **Deep Link:** Truy cập từ URL.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                                             | Nền tảng    | Input                                             | AC  |
 | --- | ------------------------------------------------------------------- | ----------- | ------------------------------------------------- | --- |
 | T01 | Click nút [Nearby] trong Action Bar của Place Detail Panel          | Web, Mobile | `place_id` hoặc `(lat, lng)` của địa điểm đang mở | B01 |

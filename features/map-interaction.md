@@ -41,6 +41,11 @@ _Không có backend — hoàn toàn là client-side map engine (MapLibre / Mapbo
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Bản đồ (Map):** Tương tác với vùng không gian của bản đồ thông qua các thiết bị nhập liệu (chuột, bàn phím) hoặc màn hình cảm ứng.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                        | Nền tảng    | Input                              | AC  |
 | --- | ---------------------------------------------- | ----------- | ---------------------------------- | --- |
 | T01 | Click / tap trên vùng bản đồ trống             | Web, Mobile | `(lat, lng)` từ click event        | B01 |

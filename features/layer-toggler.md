@@ -41,6 +41,12 @@ _Tile server cung cấp tiles cho từng layer. Layer config (danh sách, icon, 
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **UI Component:** Component nút `[Layers]` trên giao diện chính, hoặc thẻ chức năng chọn loại bản đồ nằm trong panel sau khi mở.
+- **URL/Deep Link:** Hệ thống load loại bản đồ dựa trên tham số truyền vào từ URL.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                            | Nền tảng    | Input                      | AC  |
 | --- | -------------------------------------------------- | ----------- | -------------------------- | --- |
 | T01 | Click / tap icon [Layers] trên bản đồ              | Web, Mobile | —                          | B01 |

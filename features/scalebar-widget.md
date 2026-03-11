@@ -41,6 +41,12 @@ _Không có backend riêng — tính toán client-side dựa trên projection._
 
 ### Triggers & Entry Points
 
+**Entry Points (Điểm bắt đầu):**
+- **Trạng thái Bản đồ:** Mọi thay đổi về vị trí hiển thị (latitude) hay mức độ thu phóng (zoom level).
+- **Cấu hình Local:** Sự kiện thay đổi cài đặt đơn vị hệ đo lường (metric/imperial) thông qua locale.
+
+**Triggers (Hành động kích hoạt cụ thể):**
+
 | ID  | Trigger                                     | Nền tảng    | Input                        | AC  |
 | --- | ------------------------------------------- | ----------- | ---------------------------- | --- |
 | T01 | Bản đồ load lần đầu                         | Web, Mobile | zoom level + latitude        | B01 |
