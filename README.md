@@ -16,7 +16,7 @@
 ---
 
 - [ ][Weather Widget](./features/weather-widget.md)
-- [ ][Map Interactions](./features/map-interactions.md)
+- [ ][Map Interactions](./features/map-interaction.md)
 - [ ][Startup Map](./features/startup-map.md)
 - [ ][State Persistent](./features/state-persistent.md)
 - [ ][App state store](./features/app-state-store.md)

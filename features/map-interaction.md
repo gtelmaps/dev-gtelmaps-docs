@@ -31,12 +31,12 @@ Map Interaction định nghĩa toàn bộ các tương tác trực tiếp của 
 
 ## Unique Selling Propositions (USP)
 
-| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
-| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| 1  | Gesture nhất quán web + mobile   | Cùng interaction model (pan, zoom, tilt, rotate) trên mọi nền tảng                        | Google Maps tương đương                              |
-| 2  | Tilt + heading 3D smooth         | Hỗ trợ tilt/heading 3D mượt mà, encode vào URL để share                                   | Google Maps cũng hỗ trợ 3D                           |
-| 3  | Cursor context-aware             | Cursor thay đổi theo vùng tương tác (grab, pointer, crosshair) — UX rõ ràng               | Google Maps cursor ít thay đổi                       |
-| 4  | Long press mobile chuẩn 500ms    | Thống nhất timing long press cho Reverse Geocoding, Directions — haptic feedback           | Google Maps tương đương                              |
+| #   | USP                            | Mô tả                                                                            | So sánh                        |
+| --- | ------------------------------ | -------------------------------------------------------------------------------- | ------------------------------ |
+| 1   | Gesture nhất quán web + mobile | Cùng interaction model (pan, zoom, tilt, rotate) trên mọi nền tảng               | Google Maps tương đương        |
+| 2   | Tilt + heading 3D smooth       | Hỗ trợ tilt/heading 3D mượt mà, encode vào URL để share                          | Google Maps cũng hỗ trợ 3D     |
+| 3   | Cursor context-aware           | Cursor thay đổi theo vùng tương tác (grab, pointer, crosshair) — UX rõ ràng      | Google Maps cursor ít thay đổi |
+| 4   | Long press mobile chuẩn 500ms  | Thống nhất timing long press cho Reverse Geocoding, Directions — haptic feedback | Google Maps tương đương        |
 
 ---
 
@@ -51,51 +51,52 @@ _Không có backend — hoàn toàn là client-side map engine (MapLibre / Mapbo
 ### Triggers & Entry Points
 
 **Entry Points (Điểm bắt đầu):**
+
 - **Bản đồ (Map):** Tương tác với vùng không gian của bản đồ thông qua các thiết bị nhập liệu (chuột, bàn phím) hoặc màn hình cảm ứng.
 
 **Triggers (Hành động kích hoạt cụ thể):**
 
-| ID  | Trigger                                        | Nền tảng    | Input                              | AC  |
-| --- | ---------------------------------------------- | ----------- | ---------------------------------- | --- |
-| T01 | Click / tap trên vùng bản đồ trống             | Web, Mobile | `(lat, lng)` từ click event        | B01 |
-| T02 | Pan (drag chuột / swipe 1 ngón)                | Web, Mobile | `dx, dy` delta                     | B02 |
-| T03 | Zoom (scroll wheel / pinch / double-click/tap) | Web, Mobile | zoom delta hoặc scale factor       | B03 |
-| T04 | Tilt (right-drag dọc web / 2-finger swipe mobile) | Web, Mobile | tilt delta                      | B04 |
-| T05 | Xoay heading (right-drag ngang / 2-finger rotate) | Web, Mobile | heading delta                   | B05 |
-| T06 | Right-click trên bản đồ                        | Web         | `(lat, lng)` từ right-click event  | B06 |
-| T07 | Long press ≥ 500ms                             | Mobile      | `(lat, lng)` từ touch             | B07 |
-| T08 | Hover di chuyển con trỏ trên bản đồ            | Web         | `(lat, lng)` realtime             | B08 |
+| ID  | Trigger                                           | Nền tảng    | Input                             | AC  |
+| --- | ------------------------------------------------- | ----------- | --------------------------------- | --- |
+| T01 | Click / tap trên vùng bản đồ trống                | Web, Mobile | `(lat, lng)` từ click event       | B01 |
+| T02 | Pan (drag chuột / swipe 1 ngón)                   | Web, Mobile | `dx, dy` delta                    | B02 |
+| T03 | Zoom (scroll wheel / pinch / double-click/tap)    | Web, Mobile | zoom delta hoặc scale factor      | B03 |
+| T04 | Tilt (right-drag dọc web / 2-finger swipe mobile) | Web, Mobile | tilt delta                        | B04 |
+| T05 | Xoay heading (right-drag ngang / 2-finger rotate) | Web, Mobile | heading delta                     | B05 |
+| T06 | Right-click trên bản đồ                           | Web         | `(lat, lng)` từ right-click event | B06 |
+| T07 | Long press ≥ 500ms                                | Mobile      | `(lat, lng)` từ touch             | B07 |
+| T08 | Hover di chuyển con trỏ trên bản đồ               | Web         | `(lat, lng)` realtime             | B08 |
 
 ### States Inventory
 
-| State       | Mô tả                            | Cursor / Gesture feedback           |
-| ----------- | -------------------------------- | ----------------------------------- |
-| `idle`      | Không tương tác                  | Cursor: `grab` (hoặc `default`)     |
-| `panning`   | Đang pan                         | Cursor: `grabbing`                  |
-| `zooming`   | Đang zoom (animation)            | Cursor: `grab`                      |
-| `tilting`   | Đang tilt                        | Cursor: `row-resize`                |
-| `rotating`  | Đang xoay                        | Cursor: `crosshair`                 |
-| `clicking`  | Click / tap vừa xảy ra           | Ripple effect tại điểm click        |
+| State      | Mô tả                  | Cursor / Gesture feedback       |
+| ---------- | ---------------------- | ------------------------------- |
+| `idle`     | Không tương tác        | Cursor: `grab` (hoặc `default`) |
+| `panning`  | Đang pan               | Cursor: `grabbing`              |
+| `zooming`  | Đang zoom (animation)  | Cursor: `grab`                  |
+| `tilting`  | Đang tilt              | Cursor: `row-resize`            |
+| `rotating` | Đang xoay              | Cursor: `crosshair`             |
+| `clicking` | Click / tap vừa xảy ra | Ripple effect tại điểm click    |
 
 ### Components, Responsive & Typography
 
 #### Component Inventory
 
-| Component                        | Dùng trong             |
-| -------------------------------- | ---------------------- |
-| Map canvas (WebGL)               | T01–T08                |
-| Click ripple animation           | T01, T07               |
-| Context Menu                     | T06 (xem context-menu.md) |
-| Cursor CSS class                 | T01–T05, T08           |
+| Component              | Dùng trong                |
+| ---------------------- | ------------------------- |
+| Map canvas (WebGL)     | T01–T08                   |
+| Click ripple animation | T01, T07                  |
+| Context Menu           | T06 (xem context-menu.md) |
+| Cursor CSS class       | T01–T05, T08              |
 
 #### Responsive Behavior
 
-| Breakpoint                 | Pan         | Zoom           | Tilt / Rotate       |
-| -------------------------- | ----------- | -------------- | ------------------- |
-| Mobile portrait (< 768px)  | 1-finger swipe | Pinch 2-finger | 2-finger gesture |
-| Mobile landscape           | 1-finger swipe | Pinch 2-finger | 2-finger gesture |
-| Tablet                     | 1-finger swipe | Pinch / scroll | 2-finger gesture |
-| Desktop                    | Drag chuột  | Scroll wheel   | Right-drag          |
+| Breakpoint                | Pan            | Zoom           | Tilt / Rotate    |
+| ------------------------- | -------------- | -------------- | ---------------- |
+| Mobile portrait (< 768px) | 1-finger swipe | Pinch 2-finger | 2-finger gesture |
+| Mobile landscape          | 1-finger swipe | Pinch 2-finger | 2-finger gesture |
+| Tablet                    | 1-finger swipe | Pinch / scroll | 2-finger gesture |
+| Desktop                   | Drag chuột     | Scroll wheel   | Right-drag       |
 
 #### Typography
 
