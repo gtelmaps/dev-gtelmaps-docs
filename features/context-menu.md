@@ -29,6 +29,15 @@ Context Menu là menu ngữ cảnh xuất hiện khi người dùng right-click 
 - **User need:** Power users trên desktop cần truy cập nhanh các tính năng Maps mà không cần navigate qua nhiều bước UI.
 - **Business value:** Context Menu là shortcut để vào các flows có giá trị cao (Directions, Reverse Geocoding, Nearby) — tăng feature discoverability.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                          | Mô tả                                                                                     | So sánh                                              |
+| -- | ---------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Copy tọa độ đa format       | Hỗ trợ copy WGS84 (DD/DMS/UTM), VN2000, Plus Code — phục vụ đa ngành (GIS, xây dựng, logistics) | Google Maps chỉ copy DD                              |
+| 2  | Đo lường khoảng cách + diện tích | Đo nhanh từ context menu — không cần mở tool riêng                                        | Google Maps có Measure distance nhưng cần nhiều bước |
+| 3  | Báo cáo dữ liệu sai         | User báo lỗi dữ liệu ngay tại vị trí — cải thiện chất lượng data nhanh hơn               | Google Maps cũng có "Suggest an edit"                |
+| 4  | Chia sẻ vị trí kèm state    | Share link kèm zoom/tilt/heading — người nhận thấy đúng góc nhìn                          | Google Maps share không giữ tilt/heading             |
+
 ---
 
 # Part 02 - Specifications

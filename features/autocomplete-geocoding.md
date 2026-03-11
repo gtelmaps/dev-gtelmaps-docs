@@ -29,6 +29,16 @@ Autocomplete Geocoding gợi ý danh sách địa chỉ, địa điểm, và dan
 - **User need:** Người dùng không cần nhập đầy đủ địa chỉ — autocomplete giúp hoàn thành query nhanh hơn 60–70% số ký tự cần gõ, giảm friction đáng kể.
 - **Business value:** Autocomplete cải thiện search conversion rate; là điểm inject Promoted Suggestions; cung cấp tín hiệu intent realtime.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                                | Mô tả                                                                                        | So sánh                                              |
+| -- | ---------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Hỗ trợ không dấu + có dấu         | Gõ "nguyen hue" vẫn gợi ý "Nguyễn Huệ" — normalize tiếng Việt tự động                       | Google Maps cũng hỗ trợ nhưng kém chính xác cho VN   |
+| 2  | Promoted Suggestions               | Hỗ trợ inject kết quả quảng cáo vào danh sách gợi ý — monetization native                    | Google Maps không mở tính năng này cho bên thứ ba     |
+| 3  | Location bias + lịch sử cá nhân    | Kết hợp vị trí hiện tại và recent searches để xếp hạng gợi ý — chính xác hơn theo ngữ cảnh   | Google Maps có location bias nhưng không dùng history |
+| 4  | Session token billing              | Nhóm autocomplete + select thành 1 session — tiết kiệm chi phí cho enterprise                | Google Maps cũng có session token                    |
+| 5  | Self-hosted, latency thấp nội địa  | Server đặt tại VN — P95 ≤ 200ms, nhanh hơn so với call đến server Google ở nước ngoài         | Google Maps server ở Singapore/US                    |
+
 ---
 
 # Part 02 - Specifications

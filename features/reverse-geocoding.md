@@ -30,6 +30,16 @@ Reverse Geocoding chuyển đổi tọa độ địa lý (lat, lng) thành đị
 - **Business value:** Là API nền tảng dùng bởi Maps Viewer, Fleet Management, Logistics và khách hàng enterprise; dự kiến có call volume lớn.
 - **Data sovereignty:** Dữ liệu địa chỉ được lưu trữ và xử lý trên hạ tầng GTEL.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                                  | Mô tả                                                                                     | So sánh                                          |
+| -- | ------------------------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| 1  | Địa chỉ hành chính Việt Nam chuẩn    | Trả về đúng cấu trúc xã/phường → quận/huyện → tỉnh/thành, hỗ trợ cả địa chỉ mới (bỏ cấp quận huyện) | Google Maps không nhất quán cấu trúc hành chính VN |
+| 2  | Data sovereignty                     | Toàn bộ dữ liệu geocoding lưu trữ và xử lý trên hạ tầng GTEL, không gửi ra nước ngoài    | Google Maps xử lý trên server Google              |
+| 3  | Hỗ trợ VN2000 native                | Nhận tọa độ VN2000 trực tiếp, không cần client convert trước                               | Google Maps chỉ hỗ trợ WGS84                     |
+| 4  | Coverage vùng sâu vùng xa VN         | Dữ liệu được bổ sung từ nguồn địa phương (GIS tỉnh, bưu điện) cho vùng Google chưa phủ    | Google Maps coverage nông thôn VN còn hạn chế     |
+| 5  | Giá thành thấp hơn cho enterprise VN | Self-hosted Nominatim, không phụ thuộc pricing của Google — phù hợp cho Fleet/Logistics VN  | Google Maps Geocoding API tính phí per-request    |
+
 ---
 
 # Part 02 - Specifications

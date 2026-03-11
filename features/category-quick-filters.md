@@ -30,6 +30,16 @@ Category Quick Filters là thanh chip filter nằm ngang phía trên bản đồ
 - **Business value:** Quick Filters là bề mặt quảng cáo tự nhiên (Sponsored category placement); tăng discoverability cho các loại POI có traffic thấp; dữ liệu tap trên chip phản ánh intent người dùng theo thời gian thực.
 - **Data sovereignty:** Cấu hình danh sách category và thứ tự hiển thị được quản lý trên hạ tầng GTEL (CMS-driven).
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                        | So sánh                                              |
+| -- | -------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | CMS-driven category list         | Danh sách chip được quản lý qua CMS — PO thay đổi ngay, không cần deploy code               | Google Maps hard-code danh sách category              |
+| 2  | Category theo ngữ cảnh VN        | Danh mục tối ưu cho thị trường VN: quán cà phê, bưu điện, chợ, trạm xe buýt...              | Google Maps dùng danh mục global, thiếu local context |
+| 3  | Sponsored category placement     | Hỗ trợ quảng cáo tự nhiên — thương hiệu có thể mua vị trí chip ưu tiên                      | Google Maps không mở tính năng này cho bên thứ ba     |
+| 4  | Realtime intent analytics        | Mỗi tap trên chip ghi nhận intent người dùng theo thời gian thực — data cho business insight | Google Maps không chia sẻ dữ liệu intent chi tiết    |
+| 5  | Config per region                | Hỗ trợ danh sách chip khác nhau theo vùng miền (HCM vs Hà Nội vs nông thôn)                  | Google Maps dùng một danh sách toàn cầu              |
+
 ---
 
 # Part 02 - Specifications
