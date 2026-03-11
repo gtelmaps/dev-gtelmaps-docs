@@ -29,6 +29,15 @@ Map Interaction định nghĩa toàn bộ các tương tác trực tiếp của 
 - **User need:** Bản đồ là canvas tương tác chính — mọi thao tác phải responsive, smooth và nhất quán giữa web và mobile.
 - **Business value:** Trải nghiệm interaction mượt mà là yếu tố retention hàng đầu của Maps product.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Gesture nhất quán web + mobile   | Cùng interaction model (pan, zoom, tilt, rotate) trên mọi nền tảng                        | Google Maps tương đương                              |
+| 2  | Tilt + heading 3D smooth         | Hỗ trợ tilt/heading 3D mượt mà, encode vào URL để share                                   | Google Maps cũng hỗ trợ 3D                           |
+| 3  | Cursor context-aware             | Cursor thay đổi theo vùng tương tác (grab, pointer, crosshair) — UX rõ ràng               | Google Maps cursor ít thay đổi                       |
+| 4  | Long press mobile chuẩn 500ms    | Thống nhất timing long press cho Reverse Geocoding, Directions — haptic feedback           | Google Maps tương đương                              |
+
 ---
 
 # Part 02 - Specifications

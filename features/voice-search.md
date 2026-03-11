@@ -29,6 +29,14 @@ Voice Search cho phép người dùng tìm kiếm địa điểm bằng giọng 
 - **User need:** Khi lái xe hoặc di chuyển, người dùng không thể gõ tìm kiếm — voice search là giải pháp hands-free an toàn và nhanh hơn.
 - **Business value:** Voice search tăng engagement trên mobile; là tính năng differentiation quan trọng so với maps tĩnh.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Vietnamese speech recognition    | Tối ưu nhận dạng tiếng Việt (vi-VN) — xử lý tốt giọng vùng miền                          | Google Maps dùng Google STT, tốt nhưng xử lý ở nước ngoài |
+| 2  | Graceful degradation             | Browser không hỗ trợ → ẩn mic icon thay vì lỗi — UX sạch                                  | Google Maps tương đương                              |
+| 3  | Privacy — Web Speech API local   | Dùng Web Speech API browser built-in, không gửi audio lên server GTEL                     | Google Maps gửi audio lên Google server              |
+
 ---
 
 # Part 02 - Specifications

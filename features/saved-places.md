@@ -29,6 +29,15 @@ Saved Places cho phép người dùng lưu địa điểm vào các danh sách c
 - **User need:** Người dùng muốn lưu địa điểm để truy cập lại mà không cần tìm kiếm lại — "quán ăn yêu thích", "địa điểm muốn ghé thăm".
 - **Business value:** Saved Places tăng DAU/WAU retention; là entry point cho Directions và Sharing; dữ liệu lưu là tín hiệu cá nhân hóa mạnh nhất.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Guest-mode saved places          | Lưu địa điểm vào localStorage cho guest users — không cần đăng nhập                       | Google Maps yêu cầu Google account                   |
+| 2  | Custom lists                     | Tạo danh sách tùy chỉnh (không giới hạn tên) ngoài 3 list mặc định                       | Google Maps cũng có custom lists                     |
+| 3  | Marker riêng trên bản đồ         | Địa điểm đã lưu hiển thị icon đặc biệt trên bản đồ — nhận diện nhanh                     | Google Maps cũng hiển thị saved places markers       |
+| 4  | Quick access từ Search Bar       | Gõ vào search → gợi ý từ saved places trước — truy cập nhanh hơn                          | Google Maps cũng tích hợp nhưng ít ưu tiên           |
+
 ---
 
 # Part 02 - Specifications

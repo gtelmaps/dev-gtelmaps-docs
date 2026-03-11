@@ -29,6 +29,16 @@ Forward Geocoding chuyển đổi text query (địa chỉ, tên đường, tên
 - **User need:** Người dùng cần tìm kiếm bằng ngôn ngữ tự nhiên ("Hội An", "bệnh viện Bạch Mai", "cà phê gần đây") và nhận kết quả chính xác, có thể click để xem chi tiết.
 - **Business value:** Là tính năng cốt lõi của Maps; search volume là KPI hàng đầu; là bề mặt chính cho Promoted Places và search ads.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Vietnamese NLP search            | Tìm kiếm hiểu tiếng Việt: không dấu, tên thường gọi, viết tắt (Q1 = Quận 1)              | Google Maps cũng hỗ trợ nhưng kém chính xác cho VN   |
+| 2  | Promoted Places ready            | Inject kết quả quảng cáo vào search results — monetization native                         | Google Maps có nhưng không mở cho thị trường VN      |
+| 3  | Địa chỉ mới + cũ VN             | Hỗ trợ cả format địa chỉ mới (bỏ cấp quận huyện) và format cũ                             | Google Maps chưa cập nhật format mới VN              |
+| 4  | Self-hosted, latency thấp        | Nominatim self-hosted tại VN — không phụ thuộc pricing Google, P95 ≤ 500ms                 | Google Geocoding API tính phí per-request            |
+| 5  | Location bias bản đồ             | Ưu tiên kết quả gần vùng bản đồ đang xem — contextual hơn                                 | Google Maps cũng có location bias                    |
+
 ---
 
 # Part 02 - Specifications

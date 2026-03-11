@@ -29,6 +29,14 @@ App State Store là tầng quản lý trạng thái toàn cục của Maps Viewe
 - **User need:** Trạng thái ứng dụng phải nhất quán khi người dùng navigate, back/forward, hoặc mở nhiều tab — không có inconsistency.
 - **Business value:** Centralized state management giảm bugs, giúp feature development nhanh hơn, và là prerequisite cho Time Travel debugging và A/B testing.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Single source of truth           | Centralized store đồng bộ 2 chiều với URL + LocalStorage — không inconsistency             | Google Maps internal, không rõ kiến trúc             |
+| 2  | Time Travel debugging            | Kiến trúc store hỗ trợ replay state changes — debug và A/B testing dễ dàng                 | Không có tương đương public trên Google Maps         |
+| 3  | Multi-tab safe                   | State nhất quán khi mở nhiều tab — không conflict giữa các instance                       | Google Maps tương đương                              |
+
 ---
 
 # Part 02 - Specifications

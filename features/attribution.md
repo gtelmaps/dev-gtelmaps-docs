@@ -29,6 +29,14 @@ Attribution là thành phần hiển thị thông tin bản quyền dữ liệu 
 - **Legal need:** Hợp đồng với các nhà cung cấp dữ liệu (OSM, imagery providers, traffic data) bắt buộc phải hiển thị credit đúng cách. Vi phạm có thể dẫn đến rủi ro pháp lý.
 - **User need:** Người dùng có thể xem nguồn gốc dữ liệu bản đồ để đánh giá độ tin cậy.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Dynamic theo layer + vùng        | Attribution cập nhật tự động khi chuyển layer hoặc pan sang vùng có data provider khác     | Google Maps hiển thị attribution cố định             |
+| 2  | Transparent data sourcing        | Người dùng biết chính xác nguồn dữ liệu đang xem — tăng trust                            | Google Maps chỉ hiển thị "Google" + "Map data ©"     |
+| 3  | White-label ready                | Enterprise có thể customize attribution theo hợp đồng                                     | Google Maps không cho phép thay đổi attribution      |
+
 ---
 
 # Part 02 - Specifications

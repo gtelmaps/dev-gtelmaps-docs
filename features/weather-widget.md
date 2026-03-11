@@ -30,6 +30,14 @@ Weather Widget là thành phần UI hiển thị thông tin thời tiết hiện
 - **Business value:** Weather Widget tăng tính hữu ích của Maps Viewer trong lập lịch và vận tải; là điểm tích hợp dịch vụ thời tiết của GTEL và đối tác B2B (Fleet, Logistics).
 - **Data sovereignty:** Dữ liệu thời tiết được lấy từ Weather API nội bộ hoặc đối tác được GTEL phê duyệt.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Weather API nội bộ GTEL          | Dữ liệu thời tiết từ nguồn nội địa hoặc đối tác GTEL phê duyệt — data sovereignty        | Google Maps không có weather widget tích hợp sẵn     |
+| 2  | Cập nhật theo vùng bản đồ        | Widget tự cập nhật khi pan bản đồ sang vùng địa lý mới                                    | Google Maps không hiển thị thời tiết trên bản đồ     |
+| 3  | Tích hợp Fleet / Logistics       | Cung cấp dữ liệu thời tiết realtime cho lập kế hoạch vận chuyển — API nội bộ, không giới hạn call | Không có tương đương trên Google Maps               |
+
 ---
 
 # Part 02 - Specifications

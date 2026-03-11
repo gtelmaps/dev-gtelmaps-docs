@@ -29,6 +29,14 @@ Startup Map định nghĩa toàn bộ hành vi khởi tạo của Maps Viewer: c
 - **User need:** Người dùng kỳ vọng bản đồ load nhanh, hiển thị đúng khu vực họ cần ngay từ đầu (từ URL, lịch sử, hoặc vị trí GPS) mà không cần thao tác thêm.
 - **Business value:** Startup performance và UX ảnh hưởng trực tiếp đến bounce rate và first-session retention.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Smart default vị trí VN          | Mặc định center Việt Nam, tối ưu zoom cho bản đồ VN thay vì toàn cầu                      | Google Maps default theo IP, thường center toàn cầu  |
+| 2  | Multi entry point restore        | URL, deep link, embed, GPS — tất cả đều restore đúng trạng thái mong muốn                 | Google Maps tương đương                              |
+| 3  | First paint nhanh                | Tối ưu startup performance cho hạ tầng GTEL tile server nội địa — giảm bounce rate         | Google Maps nhanh nhưng tile từ server xa VN          |
+
 ---
 
 # Part 02 - Specifications

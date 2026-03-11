@@ -29,6 +29,15 @@ Layer Toggler là panel điều khiển cho phép người dùng chuyển đổi
 - **User need:** Người dùng khác nhau cần loại bản đồ khác nhau — lái xe cần traffic overlay, đi bộ cần terrain, phân tích cần satellite. Việc chuyển đổi nhanh là yêu cầu cốt lõi.
 - **Business value:** Satellite và Traffic layers là các layer premium; Layer Toggler là UX gateway để kích hoạt upsell và các tính năng có giá trị cao.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Overlay layers phong phú         | Traffic, Transit, Bike, Air quality, Indoor... — nhiều layer cùng lúc                      | Google Maps cũng có nhiều layer                      |
+| 2  | Satellite + Traffic combo        | Chồng Traffic lên Satellite — phục vụ logistics và giám sát giao thông                     | Google Maps tương đương                              |
+| 3  | Layer state persistent           | Layer đã chọn được lưu qua session — không cần bật lại mỗi lần mở                         | Google Maps không nhớ layer preference               |
+| 4  | Air quality layer VN             | Dữ liệu chất lượng không khí từ trạm quan trắc VN — chi tiết hơn cho thị trường nội địa   | Google Maps AQI data VN hạn chế                      |
+
 ---
 
 # Part 02 - Specifications

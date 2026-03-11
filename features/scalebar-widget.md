@@ -29,6 +29,14 @@ Scalebar Widget là thanh tỷ lệ bản đồ hiển thị cố định góc d
 - **User need:** Người dùng cần ước lượng khoảng cách trực quan — "từ điểm A đến B khoảng bao nhiêu km?" — mà không cần mở công cụ đo riêng.
 - **Business value:** Thành phần chuẩn của Maps UX; đặc biệt quan trọng trong Fleet/Logistics khi cần ước tính khoảng cách nhanh trên bản đồ.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Mercator-aware auto update       | Tự cập nhật khi zoom hoặc latitude thay đổi — chính xác ở mọi vĩ độ                       | Google Maps tương đương                              |
+| 2  | Dual unit locale-aware           | Tự chuyển m/km hoặc ft/mi theo locale app                                                 | Google Maps tương đương                              |
+| 3  | Fleet/Logistics optimized        | Giúp ước tính khoảng cách nhanh trên bản đồ — quan trọng cho dispatch và route planning    | Google Maps tương đương                              |
+
 ---
 
 # Part 02 - Specifications

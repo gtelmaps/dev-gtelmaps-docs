@@ -32,13 +32,13 @@ Reverse Geocoding chuyển đổi tọa độ địa lý (lat, lng) thành đị
 
 ## Unique Selling Propositions (USP)
 
-| #  | USP                                  | Mô tả                                                                                     | So sánh                                          |
-| -- | ------------------------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| 1  | Địa chỉ hành chính Việt Nam chuẩn    | Trả về đúng cấu trúc xã/phường → quận/huyện → tỉnh/thành, hỗ trợ cả địa chỉ mới (bỏ cấp quận huyện) | Google Maps không nhất quán cấu trúc hành chính VN |
-| 2  | Data sovereignty                     | Toàn bộ dữ liệu geocoding lưu trữ và xử lý trên hạ tầng GTEL, không gửi ra nước ngoài    | Google Maps xử lý trên server Google              |
-| 3  | Hỗ trợ VN2000 native                | Nhận tọa độ VN2000 trực tiếp, không cần client convert trước                               | Google Maps chỉ hỗ trợ WGS84                     |
-| 4  | Coverage vùng sâu vùng xa VN         | Dữ liệu được bổ sung từ nguồn địa phương (GIS tỉnh, bưu điện) cho vùng Google chưa phủ    | Google Maps coverage nông thôn VN còn hạn chế     |
-| 5  | Giá thành thấp hơn cho enterprise VN | Self-hosted Nominatim, không phụ thuộc pricing của Google — phù hợp cho Fleet/Logistics VN  | Google Maps Geocoding API tính phí per-request    |
+| #   | USP                                  | Mô tả                                                                                               | So sánh                                            |
+| --- | ------------------------------------ | --------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 1   | Địa chỉ hành chính Việt Nam chuẩn    | Trả về đúng cấu trúc xã/phường → quận/huyện → tỉnh/thành, hỗ trợ cả địa chỉ mới (bỏ cấp quận huyện) | Google Maps không nhất quán cấu trúc hành chính VN |
+| 2   | Data sovereignty                     | Toàn bộ dữ liệu geocoding lưu trữ và xử lý trên hạ tầng GTEL, không gửi ra nước ngoài               | Google Maps xử lý trên server Google               |
+| 3   | Hỗ trợ VN2000 native                 | Nhận tọa độ VN2000 trực tiếp, không cần client convert trước                                        | Google Maps chỉ hỗ trợ WGS84                       |
+| 4   | Coverage vùng sâu vùng xa VN         | Dữ liệu được bổ sung từ nguồn địa phương (GIS tỉnh, bưu điện) cho vùng Google chưa phủ              | Google Maps coverage nông thôn VN còn hạn chế      |
+| 5   | Giá thành thấp hơn cho enterprise VN | Self-hosted Nominatim, không phụ thuộc pricing của Google — phù hợp cho Fleet/Logistics VN          | Google Maps Geocoding API tính phí per-request     |
 
 ---
 
@@ -51,6 +51,7 @@ Reverse Geocoding chuyển đổi tọa độ địa lý (lat, lng) thành đị
 ### Triggers & Entry Points
 
 **Entry Points (Điểm bắt đầu):**
+
 - **Bản đồ (Map):** Tương tác trực tiếp trên bản đồ (Click/Tap, Long Press).
 - **Context Menu:** Trình đơn chuột phải trên bản đồ.
 - **Search Bar / URL:** Nhập tọa độ trực tiếp hoặc truy cập qua Deep Link.

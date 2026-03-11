@@ -29,6 +29,15 @@ Geolocation cho phép Maps Viewer xác định và theo dõi vị trí GPS của
 - **User need:** "Tôi đang ở đâu?" là câu hỏi phổ biến nhất trên Maps. Người dùng cần biết vị trí chính xác của mình trên bản đồ để điều hướng và khám phá xung quanh.
 - **Business value:** Geolocation là prerequisite cho Search Nearby theo GPS, Navigation mode, và Fleet tracking realtime.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Follow Location mode             | Bản đồ tự động theo dõi GPS người dùng di chuyển — prerequisite cho Navigation             | Google Maps tương đương                              |
+| 2  | Permission UX thân thiện         | Giải thích rõ lý do xin quyền trước khi hỏi — tăng opt-in rate                           | Google Maps hỏi trực tiếp, ít giải thích             |
+| 3  | Fallback IP-based location       | Khi GPS bị từ chối → dùng IP geolocation để hiển thị khu vực gần đúng                     | Google Maps tương đương                              |
+| 4  | Tích hợp Fleet tracking          | GPS realtime phục vụ Fleet Management — self-hosted, không giới hạn tracking points        | Google Maps Fleet API tính phí per-asset             |
+
 ---
 
 # Part 02 - Specifications

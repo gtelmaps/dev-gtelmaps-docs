@@ -29,6 +29,14 @@ State Persistence định nghĩa cơ chế lưu và khôi phục trạng thái c
 - **User need:** Khi quay lại Maps sau khi đóng tab, người dùng kỳ vọng thấy lại vị trí và trạng thái họ đã dùng lần trước — không phải bắt đầu lại từ đầu.
 - **Business value:** Good session restore giảm time-to-value, tăng return session rate và stickiness.
 
+## Unique Selling Propositions (USP)
+
+| #  | USP                              | Mô tả                                                                                     | So sánh                                              |
+| -- | -------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 1  | Dual channel: URL + LocalStorage | Trạng thái bản đồ qua URL (shareable), preferences qua LocalStorage (private)              | Google Maps tương đương                              |
+| 2  | Guest-friendly persistence       | Lưu recent searches, saved places cho guest users không cần đăng nhập                      | Google Maps yêu cầu đăng nhập Google account         |
+| 3  | Session restore mượt mà          | Đóng tab và mở lại → đúng vị trí, zoom, layer, panel như lúc đóng                          | Google Maps cũng hỗ trợ nhưng yêu cầu login          |
+
 ---
 
 # Part 02 - Specifications
