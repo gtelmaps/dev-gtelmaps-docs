@@ -42,13 +42,13 @@ _Không có backend riêng. URL được xử lý client-side bởi SPA router._
 ### URL Structure
 
 ```
-https://{domain}/{locale}/maps/@{lat},{lng},{zoom}[z|m][,{tilt}a[,{heading}y]]
-  [?layer={layer_id}]
-  [?data={encoded_data}]
-  [?ttu={transit_url}]
-  [?s={search_query}]
-  [?ml={my_location_lat,lng}]
-  [&yt={youtube_place_id}]
+https://{domain}/{locale}/maps/@{lat},{lng},{zoom}z[,{tilt}a[,{heading}y]]
+  [?layer={layer_id}
+  [&data={encoded_data}]
+  [&ttu={transit_url}]
+  [&s={search_query}]
+  [&ml={my_location_lat,lng}]
+  [&yt={youtube_place_id}]]
 
 Examples:
 /@10.7769,106.7009,14z
@@ -99,7 +99,7 @@ Examples:
 
 ```gherkin
 Given  người dùng pan / zoom / tilt / rotate bản đồ
-Then   URL cập nhật realtime theo định dạng /@lat,lng,zooma
+Then   URL cập nhật realtime theo định dạng /@lat,lng,zoomz
 And    URL update được debounce 300ms (không cập nhật từng pixel)
 And    History.pushState được dùng (không reload trang)
 And    lat/lng làm tròn 4 chữ số thập phân
