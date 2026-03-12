@@ -19,27 +19,27 @@
 - 2: **P3 (Low)** - Cần thiết, có thể làm sau các phần trên
 - 1: **P4 (Lowest)** - Sẽ làm sau cùng nhưng vẫn bắt buộc làm
 
-| Tính năng                                                            | Sprint | Priority | PO  | DES | FE  | GIS | BE  | DevOps | QC  |
-| -------------------------------------------------------------------- | :----: | :------: | :-: | :-: | :-: | :-: | :-: | :----: | :-: |
-| [Unified Search Bar](./features/unified-search-bar.md)               |   3    |    5     | 🔄  | ⬜  | ⬜  | ⬜  | ⬜  |   ➖   | ⬜  |
-| [Reverse Geocoding](./features/reverse-geocoding.md)                 |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | 🔄  |
-| [Place Detail](./features/unified-search-bar.md)                     |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | ⬜  |
-| [Autocomplete Geocoding](./features/autocomplete-geocoding.md)       |   3    |    4     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Category quick filters](./features/category-quick-filters.md)       |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Search Nearby](./features/search-nearby.md)                         |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Recent Searches](./features/recent-searches.md)                     |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ⬜  |   ➖   | ⬜  |
-| [Context Menu](./features/context-menu.md)                           |   3    |    2     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Administrative Boundaries](./features/administrative-boundaries.md) |   4    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Map URL](./features/map-url.md)                                     |   4    |    1     | 🔄  | ➖  | ⬜  | ⬜  | ➖  |   ➖   | ⬜  |
-| [Weather Widget](./features/weather-widget.md)                       |   4    |    3     | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Map Interactions](./features/map-interaction.md)                    |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Startup Map](./features/startup-map.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [State Persistent](./features/state-persistent.md)                   |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [App state store](./features/app-state-store.md)                     |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Geolocation](./features/geolocation.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Attribution](./features/attribution.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Compass Widget](./features/compass-widget.md)                       |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Layer toggle](./features/layer-toggle.md)                           |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Logo widget](./features/logo-widget.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Scale Bar Widget](./features/scale-bar-widget.md)                   |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
-| [Zoom Widget](./features/zoom-widget.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| Mã  | Tính năng                                                            | Epic                   | Sprint | Priority | PO  | DES | FE  | GIS | BE  | DevOps | QC  |
+| --- | -------------------------------------------------------------------- | ---------------------- | :----: | :------: | :-: | :-: | :-: | :-: | :-: | :----: | :-: |
+| F01 | [Unified Search Bar](./features/unified-search-bar.md)               | Map Search & Discovery |   3    |    5     | 🔄  | ⬜  | ⬜  | ⬜  | ⬜  |   ➖   | ⬜  |
+| F02 | [Reverse Geocoding](./features/reverse-geocoding.md)                 | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | 🔄  |
+| F03 | [Place Detail](./features/place-detail.md)                           | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | ⬜  |
+| F04 | [Autocomplete Geocoding](./features/autocomplete-geocoding.md)       | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F05 | [Category quick filters](./features/category-quick-filters.md)       | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F06 | [Search Nearby](./features/search-nearby.md)                         | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F07 | [Recent Searches](./features/recent-searches.md)                     | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ⬜  |   ➖   | ⬜  |
+| F08 | [Context Menu](./features/context-menu.md)                           | Map Search & Discovery |   3    |    2     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F09 | [Administrative Boundaries](./features/administrative-boundaries.md) | Map Spatial Data       |   4    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F10 | [Map URL](./features/map-url.md)                                     | Map Core               |   4    |    1     | 🔄  | ➖  | ⬜  | ⬜  | ➖  |   ➖   | ⬜  |
+| F11 | [Weather Widget](./features/weather-widget.md)                       | Map Widgets            |   4    |    3     | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F12 | [Map Interactions](./features/map-interaction.md)                    | Map Core               |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F13 | [Startup Map](./features/startup-map.md)                             | Map Core               |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F14 | [State Persistent](./features/state-persistent.md)                   | Map Core               |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F15 | [App state store](./features/app-state-store.md)                     | Map Core               |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F16 | [Geolocation](./features/geolocation.md)                             | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F17 | [Attribution](./features/attribution.md)                             | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F18 | [Compass Widget](./features/compass-widget.md)                       | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F19 | [Layer toggle](./features/layer-toggle.md)                           | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F20 | [Logo widget](./features/logo-widget.md)                             | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F21 | [Scale Bar Widget](./features/scale-bar-widget.md)                   | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| F22 | [Zoom Widget](./features/zoom-widget.md)                             | Map Widgets            |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
