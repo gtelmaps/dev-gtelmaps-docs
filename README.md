@@ -28,6 +28,7 @@
 | F05 | [Category quick filters](./features/category-quick-filters.md)       | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F06 | [Search Nearby](./features/search-nearby.md)                         | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F07 | [Recent Searches](./features/recent-searches.md)                     | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ⬜  |   ➖   | ⬜  |
+| F23 | App Config                                                           | Map Core               |   3    |    3     | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  |   ➖   | ⬜  |
 | F08 | [Context Menu](./features/context-menu.md)                           | Map Search & Discovery |   3    |    2     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F09 | [Administrative Boundaries](./features/administrative-boundaries.md) | Map Spatial Data       |   4    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F10 | [Map URL](./features/map-url.md)                                     | Map Core               |   4    |    1     | 🔄  | ➖  | ⬜  | ⬜  | ➖  |   ➖   | ⬜  |
