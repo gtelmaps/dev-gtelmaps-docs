@@ -7,7 +7,7 @@
 - ⬜ **Todo**
 - ☑️ **Done**
 - 🔄 **In Progress**
-- ➖ **N/A** (Không tham gia)
+- ➖ **N/A**
 
 **Priority**
 
@@ -31,7 +31,7 @@
 | [Context Menu](./features/context-menu.md)                           |   3    |    2     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | [Administrative Boundaries](./features/administrative-boundaries.md) |   4    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | [Map URL](./features/map-url.md)                                     |   4    |    1     | 🔄  | ➖  | ⬜  | ⬜  | ➖  |   ➖   | ⬜  |
-| [Weather Widget](./features/weather-widget.md)                       |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
+| [Weather Widget](./features/weather-widget.md)                       |   4    |    3     | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | [Map Interactions](./features/map-interaction.md)                    |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | [Startup Map](./features/startup-map.md)                             |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | [State Persistent](./features/state-persistent.md)                   |        |          | ⬜  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
