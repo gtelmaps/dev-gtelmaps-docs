@@ -22,8 +22,8 @@
 | Mã  | Tính năng                                                            | Epic                   | Sprint | Priority | PO  | DES | FE  | GIS | BE  | DevOps | QC  |
 | --- | -------------------------------------------------------------------- | ---------------------- | :----: | :------: | :-: | :-: | :-: | :-: | :-: | :----: | :-: |
 | F01 | [Unified Search Bar](./features/unified-search-bar.md)               | Map Search & Discovery |   3    |    5     | 🔄  | ⬜  | ⬜  | ⬜  | ⬜  |   ➖   | ⬜  |
-| F02 | [Reverse Geocoding](./features/reverse-geocoding.md)                 | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | 🔄  |
-| F03 | [Place Detail](./features/place-detail.md)                           | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ➖  | ➖  |   ➖   | ⬜  |
+| F02 | [Reverse Geocoding](./features/reverse-geocoding.md)                 | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ⬜  | ➖  |   ➖   | 🔄  |
+| F03 | [Place Detail](./features/place-detail.md)                           | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | 🔄  | ⬜  | ➖  |   ➖   | ⬜  |
 | F04 | [Autocomplete Geocoding](./features/autocomplete-geocoding.md)       | Map Search & Discovery |   3    |    4     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F05 | [Category quick filters](./features/category-quick-filters.md)       | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
 | F06 | [Search Nearby](./features/search-nearby.md)                         | Map Search & Discovery |   3    |    3     | 🔄  | ⬜  | ⬜  | ➖  | ➖  |   ➖   | ⬜  |
